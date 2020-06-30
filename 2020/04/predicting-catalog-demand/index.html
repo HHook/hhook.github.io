@@ -287,7 +287,7 @@ Should the company send out these catalogs to new customers? How much revenue ca
 <li>Customer segment.</li>
 </ul>
 <h2 id="step-2-analysis-modeling-and-validation">Step 2: Analysis, Modeling, and Validation</h2>
-<p>Variables for each customer given in the data: Name, Customer Segment, Customer ID, Address, Avgerage Sale Amount, Response to Last Catalog, Avgerage Number of Products Purchased, Years as a Customer.</p>
+<p>Variables for each customer given in the data: Name, Customer Segment, Customer ID, Address, Average Sale Amount, Response to Last Catalog, Average Number of Products Purchased, Years as a Customer.</p>
 <p>On my first model I chose to use these predictor variables: Average number of products purchased, Years as a Customer and Customer segment.
 For Numeric variables we can use scatterplots between an individual variable and the target variable to see if a variable might be a good candidate for a predictor variable. For categorical variables we need to run them through the model to see their if they are significant. We don’t want to include any variables that aren’t statistically significant. If the p-value is less than 0.05, we can be 95% confident that there exists a relationship between the predictor and target variable.</p>
 <p>
@@ -352,7 +352,7 @@ see the correlation between the predictor variable and target variable by visual
 </div>
 
 <p>From Linear Regression Model Report we can also see the p-value of Average number of products purchased is 2.2e-16 <em>(this can be written as 2.2 * 10^-16 which can also be written as &lt; .00000000000000022 This is very small!)</em>, which makes it statistically significant.</p>
-<p>Because the trendline on scatterplot between Years as a Customer and Avgerage Sale Amount came out flat <em>(for it being a discrete variable)</em>, I decided to run it through the linear regression model to see if it has any significance. The p-value of this turned out to be 0.056 and we can consider it to be of insignificant value to the model and remove it from the equation.</p>
+<p>Because the trendline on scatterplot between Years as a Customer and Average Sale Amount came out flat <em>(for it being a discrete variable)</em>, I decided to run it through the linear regression model to see if it has any significance. The p-value of this turned out to be 0.056 and we can consider it to be of insignificant value to the model and remove it from the equation.</p>
 <h6 id="why-i-think-it-is-a-good-model">Why I think it is a good model</h6>
 <p>First, with all the p-values of predictors used in this model being less than 0.05 we consider all of them significant, which means the relationship is not likely to be occurring randomly.
 Second, we need to look at the adjusted R-squared value. <em>Adjusted</em> R-squared because it is a multiple linear regression. In our results it  is 0.84 and this is considered a very good result, generally higher is better.
