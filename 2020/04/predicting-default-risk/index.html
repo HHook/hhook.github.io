@@ -578,7 +578,7 @@ Model accuracy comparison report tells us the overall accuracy for Logistic Regr
 <p>Decision tree and regression model both: PPV 79%, NPV 60%.<br>
 Boosted model: PPV 77%, NPV 80%.<br>
 Forest model: PPV 80%, NPV 83%.</p>
-<p>Boosted and the forest model are not biased. The PPV and NPV are almost equal suggestion lack of bias.</p>
+<p>The PPV and NPV are almost equal in Boosted and Forest models - suggesting lack of bias.</p>
 <h2 id="step-4-choosing-the-best-model">Step 4: Choosing the best model</h2>
 <p>I chose to use our Forest model to predict loan worthy customers taking into account its highest overall accuracy compared to other models and its high F1 score, which looks for the bias in prediciting &ldquo;Creditworthy&rdquo; or &ldquo;Non-Creditworthy&rdquo; and calculates a single score: the higher the score, the better. Our Forest model’s overall accuracy is 80%, F1 87%.</p>
 <p>PPV = True Positives / ( True Positives + False Positives ) = 101/ (101 + 26) = 0.8<br>
