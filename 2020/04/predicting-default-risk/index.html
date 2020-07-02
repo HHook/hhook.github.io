@@ -8,25 +8,25 @@
 <meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.8-BETA">
 <meta name="author" content="Helena Hook">
 <meta name="keywords" content="">
-<meta name="description" content="In this project, we will analyze a fictional business problem in the mail-order catalog business. We&rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.">
+<meta name="description" content="In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.">
 
 
-<meta property="og:description" content="In this project, we will analyze a fictional business problem in the mail-order catalog business. We&rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.">
+<meta property="og:description" content="In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Predicting Catalog Demand">
-<meta name="twitter:title" content="Predicting Catalog Demand">
-<meta property="og:url" content="https://hhook.github.io/2020/04/predicting-catalog-demand/">
-<meta property="twitter:url" content="https://hhook.github.io/2020/04/predicting-catalog-demand/">
+<meta property="og:title" content="Predicting Default Risk">
+<meta name="twitter:title" content="Predicting Default Risk">
+<meta property="og:url" content="https://hhook.github.io/2020/04/predicting-default-risk/">
+<meta property="twitter:url" content="https://hhook.github.io/2020/04/predicting-default-risk/">
 <meta property="og:site_name" content="Data Hook">
-<meta property="og:description" content="In this project, we will analyze a fictional business problem in the mail-order catalog business. We&rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.">
-<meta name="twitter:description" content="In this project, we will analyze a fictional business problem in the mail-order catalog business. We&rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.">
+<meta property="og:description" content="In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.">
+<meta name="twitter:description" content="In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2020-04-04T00:00:00">
+    <meta property="article:published_time" content="2020-04-11T00:00:00">
   
   
-    <meta property="article:modified_time" content="2020-04-04T00:00:00">
+    <meta property="article:modified_time" content="2020-04-11T00:00:00">
   
   
   
@@ -37,6 +37,8 @@
   
     
       <meta property="article:tag" content="alteryx">
+    
+      <meta property="article:tag" content="classification models">
     
   
 
@@ -53,9 +55,6 @@
 
 
 
-  <meta property="og:image" content="https://hhook.github.io/images/catalogs.jpg">
-  <meta property="twitter:image" content="https://hhook.github.io/images/catalogs.jpg">
-
 
 
 
@@ -64,14 +63,14 @@
   <meta property="twitter:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1592489252/hhook_profile.jpg">
 
 
-    <title>Predicting Catalog Demand</title>
+    <title>Predicting Default Risk</title>
 
     <link rel="icon" href="https://hhook.github.io/themes/tranquilpeak/static/favicon.ico">
     
 
     
 
-    <link rel="canonical" href="https://hhook.github.io/2020/04/predicting-catalog-demand/">
+    <link rel="canonical" href="https://hhook.github.io/2020/04/predicting-default-risk/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -233,15 +232,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Predicting Catalog Demand
+      Predicting Default Risk
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-04-04T00:00:00Z">
+      <time itemprop="datePublished" datetime="2020-04-11T00:00:00Z">
         
-  April 4, 2020
+  April 11, 2020
 
       </time>
     
@@ -260,35 +259,20 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>In this project, we will analyze a fictional business problem in the mail-order catalog business. We&rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.</p>
-<p>This task will involve building a linear regression model with Alteryx and applying the results in order to provide a recommendation to management.</p>
-<h6 id="the-business-problem">The Business Problem</h6>
-<p>Last year the company sent out its first print catalog, and is preparing to send out this year&rsquo;s catalog in the coming months. The company has 250 new customers from their mailing list that they want to send the catalog to.
-Determine how much profit the company can expect from sending a catalog to these customers. Management does not want to send the catalog out to these new customers unless the expected profit contribution exceeds $10,000.</p>
-<h2 id="step-1-business-and-data-understanding">Step 1: Business and Data Understanding</h2>
+              <p>In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.</p>
+<h5 id="project-overview">Project overview</h5>
+<p>We have the following information to work with:</p>
 <ol>
-<li>
-<p>We need to predict if this catalog campaign is a good idea.
-Should the company send out these catalogs to new customers? How much revenue can this company expect to make if they send their new catalog to these 250 customers? Is it profitable considering all the costs and possibility that customer might not make a purchase at all?</p>
-</li>
-<li>
-<p>What data is needed to inform those decisions?</p>
-</li>
+<li>Data on all past applications for a loan</li>
+<li>The list of customers that need to be classified</li>
 </ol>
-<ul>
-<li>Possible revenue from each client.</li>
-<li>Cost of each catalog.</li>
-<li>Average past sales.</li>
-<li>Average gross margin for each product.</li>
-<li>Average number of products purchased.</li>
-<li>Probability that customer will buy.</li>
-<li>Customer segment.</li>
-</ul>
-<h2 id="step-2-analysis-modeling-and-validation">Step 2: Analysis, Modeling, and Validation</h2>
-<p>Variables for each customer given in the data: Name, Customer Segment, Customer ID, Address, Average Sale Amount, Response to Last Catalog, Average Number of Products Purchased, Years as a Customer.</p>
-<p>On my first model I chose to use these predictor variables: Average number of products purchased, Years as a Customer and Customer segment.
-For Numeric variables we can use scatterplots between an individual variable and the target variable to see if a variable might be a good candidate for a predictor variable. For categorical variables we need to run them through the model to see their if they are significant. We don’t want to include any variables that aren’t statistically significant. If the p-value is less than 0.05, we can be 95% confident that there exists a relationship between the predictor and target variable.</p>
-<p>
+<p>Because we are classifying new customers to two groups: creditworthy or not - we need to use a binary model to make this decision. We will build and compare classification models such as Logistic Regression, Decision Tree, Random Forest, and Boosted Model models’ performance against each other. Then decide on the best model to classify new bank customers on whether they can be approved for a loan or not.</p>
+<h2 id="step-1-data-clean-up-and-building-the-training-set">Step 1: Data clean up and building the Training Set</h2>
+<p>I used Field Summary tool to explore given dataset in Alteryx. Based on report below following decisions were made:
+Duration in Current Address has 69% missing data and was removed, while Age Years has missing data as well, but only 2.4% which I decided to impute the missing values with median age because median is not affected by outliers.
+There were two fields with just one value for the whole field: Occupation and Concurrent Credits. Other fields with low-variability where more than 80% of the data was skewed to one side: Guarantors, Number of Dependants and Foreign Worker. All these fields were removed.
+And lastly Telephone field was removed because it is irrelevant to customer’s credit worth.
+
 
  
   
@@ -308,18 +292,15 @@ For Numeric variables we can use scatterplots between an individual variable and
 
 <div class="figure nocaption fig-50" >
   
-    <a class="fancybox" href="https://hhook.github.io/images/avg%20number%20of%20products%20purchased%20vs%20avg%20sale%20amount.JPG" data-fancybox-group="">
+    <a class="fancybox" href="https://hhook.github.io/images/Predictors%20removed.JPG" data-fancybox-group="">
   
-    <img class="fig-img" src="https://hhook.github.io/images/avg%20number%20of%20products%20purchased%20vs%20avg%20sale%20amount.JPG" >
+    <img class="fig-img" src="https://hhook.github.io/images/Predictors%20removed.JPG" >
   
     </a>
   
   
 </div>
-<br>
-Average number of products purchased as a continuous variable is easy to
-see the correlation between the predictor variable and target variable by visualizing it. I put Average number of products purchased and Average sale amount on a scatterplot to visualize this.</p>
-<p>To use the categorical variable of Customer segment in our model we have to create dummy variables. Because we can’t check categorical variables’ relationship visually, we run it through the model and check their p-values. Looking for p-values to be smaller than 0.05 which makes them statistically significant. Reading the regression model report we see this is true for our Customer segments.</p>
+
 
 
  
@@ -338,35 +319,386 @@ see the correlation between the predictor variable and target variable by visual
     
   
 
-<div class="figure nocaption " >
+<div class="figure nocaption fig-50" >
   
-    <a class="fancybox" href="https://hhook.github.io/images/2nd%20model%20coefficients.png" data-fancybox-group="">
+    <a class="fancybox" href="https://hhook.github.io/images/Occupation%20uniform.JPG" data-fancybox-group="">
   
-    <img class="fig-img" src="https://hhook.github.io/images/2nd%20model%20coefficients.png" >
+    <img class="fig-img" src="https://hhook.github.io/images/Occupation%20uniform.JPG" >
+  
+    </a>
+  
+  
+</div>
+   </p>
+<h2 id="step-2-training-the-classification-models">Step 2: Training the Classification Models</h2>
+<p>For creating estimation and validation samples 70% went for estimation(training sample) and 30% of the entire dataset was saved for validation.
+For each model I have highlighted their significant predictor variables with their p-values.   </p>
+<ol>
+<li>Logistic Regression model
+Logistic regression model with Stepwise kept these predictor variables:
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33 right" >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/LR%20model%20predictor%20p%20values.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/LR%20model%20predictor%20p%20values.JPG" >
+  
+    </a>
+  
+  
+</div>
+</li>
+</ol>
+<ul>
+<li>Account balance</li>
+<li>Payment status</li>
+<li>Purpose</li>
+<li>Credit amount</li>
+<li>Length of current employment</li>
+<li>Instalment percent  <br>
+ </li>
+</ul>
+<ol start="2">
+<li>Decision Tree model
+Decision Tree model found these predictor variables significant:</li>
+</ol>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33 right" >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/DT%20model%20predictors%20VI.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/DT%20model%20predictors%20VI.JPG" >
   
     </a>
   
   
 </div>
 
-<p>From Linear Regression Model Report we can also see the p-value of Average number of products purchased is 2.2e-16 <em>(this can be written as 2.2 * 10^-16 which can also be written as &lt; .00000000000000022 This is very small!)</em>, which makes it statistically significant.</p>
-<p>Because the trendline on scatterplot between Years as a Customer and Average Sale Amount came out flat <em>(for it being a discrete variable)</em>, I decided to run it through the linear regression model to see if it has any significance. The p-value of this turned out to be 0.056 and we can consider it to be of insignificant value to the model and remove it from the equation.</p>
-<h6 id="why-i-think-it-is-a-good-model">Why I think it is a good model</h6>
-<p>First, with all the p-values of predictors used in this model being less than 0.05 we consider all of them significant, which means the relationship is not likely to be occurring randomly.
-Second, we need to look at the adjusted R-squared value. <em>Adjusted</em> R-squared because it is a multiple linear regression. In our results it  is 0.84 and this is considered a very good result, generally higher is better.
-Together the low p-values of predictor variables and R-squared value show us the model is highly predictive which suggests it to be a good model for the results we need and the available data we have.</p>
-<p>Best linear regression equation based on the available data is the following:<br>
-Y = 303.46 + 66.98 * Avg_Num_Products_Purchased - 149.36 * (If Type: Loyalty Club Only) + 281.84 * (If Type: Loyalty Club and Credit Card) - 245.42 * (If Type: Store Mailing List) + 0 * (If Type: Credit Card Only)</p>
-<h2 id="step-3-presentationvisualization">Step 3: Presentation/Visualization</h2>
-<h6 id="my-recommendation">My recommendation</h6>
-<p>Based on my predictive model and calculations made considering costs, as the management wanted to send out the catalog to these 250 customers only if the expected profit exceeds $10,000 - I can recommend them to do so.</p>
-<p>My recommendation to send out the catalogs is based on the use of created predictive model:
-Predicted_Revenue = 303.46 + 66.98 * Avg_Num_Products_Purchased - 149.36 * (If Type: Loyalty Club Only) + 281.84 * (If Type: Loyalty Club and Credit Card) - 245.42 * (If Type: Store Mailing List) + 0 * (If Type: Credit Card Only)</p>
-<p>Then we multiply the predicted revenue with given customer’s probability of making the purchase:
-Probable_Revenue = (Predicted_Revenue) * (Probability to buy)<br>
-This is multiplied with average gross margin of all products, which is 50% and deduct the cost of each catalog which is $6.50:
-Probable_Revenue * 0.5 – 6.50</p>
-<p>The Final Profit from the new catalog is expected to be $21,987.44 which would be the probable profit made from sending new catalogs out to given 250 customers.</p>
+<ul>
+<li>Account Balance</li>
+<li>Value Savings Stocks</li>
+<li>Duration of Credit in Months  <br>
+ <br>
+ </li>
+</ul>
+<ol start="3">
+<li>Forest Model
+The Forest model found these predictor variables most significant:<br>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-25 right" >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/F%20model%20predictors%20VI.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/F%20model%20predictors%20VI.JPG" >
+  
+    </a>
+  
+  
+</div>
+</li>
+</ol>
+<ul>
+<li>Credit Amount</li>
+<li>Age in years</li>
+<li>Duration of credit in months</li>
+<li>Account Balance  <br>
+ <br>
+ </li>
+</ul>
+<ol start="4">
+<li>Boosted Model
+Our Boosted Model works with these predictor variables:<br>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-25 right" >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/B%20model%20predictors%20VI.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/B%20model%20predictors%20VI.JPG" >
+  
+    </a>
+  
+  
+</div>
+</li>
+</ol>
+<ul>
+<li>Credit amount</li>
+<li>Account balance</li>
+<li>Duration of credit in months</li>
+<li>Payment status of previous credit  <br>
+ </li>
+</ul>
+<h2 id="step-3-model-accuracy-comparison-against-validation-set">Step 3: Model accuracy comparison against validation set</h2>
+<p>
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+<div class="figure center fig-75" >
+  
+    <img class="fig-img" src="https://hhook.github.io/images/Comparison%20report.JPG" >
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+Model accuracy comparison report tells us the overall accuracy for Logistic Regression model was 75%, Decision Tree model 75%, Forest model 80% and Boosted model 78%.
+ <br>
+ <br>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure nocaption fig-75 center" >
+  
+    <img class="fig-img" src="https://hhook.github.io/images/Comparison%20report%20confusion%20matrix.JPG" >
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+<p>The Regression and the Decision Tree models predicted a lot of creditworthy applicants as non-creditworthy. Those two models are predicting the creditworthy applicants with more accuracy compared to the non-creditworthy. We can see that the Positive Predictive value <em>(PPV, also called Precision)</em> is higher than the Negative Predictive Value <em>(NPV)</em> which suggests that the models are biased towards creditworthy applicants which is understandable since our data set is biased - having a lot more creditworthy than non-creditworthy applicants.</p>
+<p>Decision tree and regression model both: PPV 79%, NPV 60%.<br>
+Boosted model: PPV 77%, NPV 80%.<br>
+Forest model: PPV 80%, NPV 83%.</p>
+<p>Boosted and the forest model are not biased. The PPV and NPV are almost equal suggestion lack of bias.</p>
+<h2 id="step-4-choosing-the-best-model">Step 4: Choosing the best model</h2>
+<p>I chose to use our Forest model to predict loan worthy customers taking into account its highest overall accuracy compared to other models and its high F1 score, which looks for the bias in prediciting &ldquo;Creditworthy&rdquo; or &ldquo;Non-Creditworthy&rdquo; and calculates a single score: the higher the score, the better. Our Forest model’s overall accuracy is 80%, F1 87%.</p>
+<p>PPV = True Positives / ( True Positives + False Positives ) = 101/ (101 + 26) = 0.8<br>
+NPV = True Negatives / ( True Negatives + False Negatives) = 19 / ( 19 + 4) = 0.83<br>
+ACC = (TP + TN) / (P + N) = (101 + 19) / (127 + 23) = 0.8<br>
+F1 = 2TP / (2TP + FP + FN) = 2x101/ (2x101 + 26 + 4) = 0.87</p>
+<p>
+
+
+<div class="figure nocaption fig-33 right" >
+  
+    <img class="fig-img" src="https://hhook.github.io/images/Comparison%20report%20ROC.JPG" >
+  
+  
+</div>
+
+In the ROC curve we see our Forest model with orange line being the highest in graph of all models – meaning that we are getting a higher rate of true positive rates vs. false positives rates. We are looking for a high rate of true positive vs. true negative rates because we do not want to extend loans to people who are not creditworthy. Classifiers that get curves closer to the top-left corner indicate a better performance.</p>
+<p>Our Forest model’s AUC is 0.73 it means there is 73% chance that model will be able to distinguish between positive class and negative class.</p>
+<h3 id="the-result">The result</h3>
+<p>Out of 500 new applications there are 411 customers who are creditworthy meaning they qualify for getting a loan as per our prediction model.<br>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure nocaption" >
+  
+    <img class="fig-img" src="https://hhook.github.io/images/Scoring%20creditworthy%20customers.JPG" >
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+<p> <br>
+ </p>
+<h5 id="materials-used">Materials used:</h5>
+<p><em>“Understanding AUC - ROC Curve”</em><br>
+<a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5</a></p>
+<p><em>“Simple guide to confusion matrix terminology”</em><br>
+<a href="https://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/">https://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/</a></p>
+<p><em>“Confusion matrix online calculator”</em><br>
+<a href="http://onlineconfusionmatrix.com/">http://onlineconfusionmatrix.com/</a></p>
+<p> <br>
+Alteryx workflows:<br>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure  fig-75 center" >
+  
+    <img class="fig-img" src="https://hhook.github.io/images/Comparison%20workflow.JPG"  alt="Model comparison workflow">
+  
+   
+    <span class="caption">Model comparison workflow</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure  fig-75 center" >
+  
+    <img class="fig-img" src="https://hhook.github.io/images/Scoring%20forest%20model.JPG"  alt="Scoring data with Forest model  ">
+  
+   
+    <span class="caption">Scoring data with Forest model  </span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
               
             </div>
           </div>
@@ -380,6 +712,8 @@ Probable_Revenue * 0.5 – 6.50</p>
                     
   <a class="tag tag--primary tag--small" href="https://hhook.github.io/tags/alteryx/">alteryx</a>
 
+  <a class="tag tag--primary tag--small" href="https://hhook.github.io/tags/classification-models/">classification models</a>
+
                   </div>
                 
               
@@ -391,7 +725,7 @@ Probable_Revenue * 0.5 – 6.50</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hhook.github.io/2020/04/predicting-default-risk/" data-tooltip="Predicting Default Risk">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -399,7 +733,7 @@ Probable_Revenue * 0.5 – 6.50</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hhook.github.io/2020/04/predicting-catalog-demand/" data-tooltip="Predicting Catalog Demand">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -417,13 +751,13 @@ Probable_Revenue * 0.5 – 6.50</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hhook.github.io/2020/04/predicting-catalog-demand/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hhook.github.io/2020/04/predicting-default-risk/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hhook.github.io/2020/04/predicting-catalog-demand/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hhook.github.io/2020/04/predicting-default-risk/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -461,7 +795,7 @@ Probable_Revenue * 0.5 – 6.50</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hhook.github.io/2020/04/predicting-default-risk/" data-tooltip="Predicting Default Risk">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -469,7 +803,7 @@ Probable_Revenue * 0.5 – 6.50</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hhook.github.io/2020/04/predicting-catalog-demand/" data-tooltip="Predicting Catalog Demand">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -487,13 +821,13 @@ Probable_Revenue * 0.5 – 6.50</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hhook.github.io/2020/04/predicting-catalog-demand/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hhook.github.io/2020/04/predicting-default-risk/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hhook.github.io/2020/04/predicting-catalog-demand/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hhook.github.io/2020/04/predicting-default-risk/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -517,13 +851,13 @@ Probable_Revenue * 0.5 – 6.50</p>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhhook.github.io%2F2020%2F04%2Fpredicting-catalog-demand%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhhook.github.io%2F2020%2F04%2Fpredicting-default-risk%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhhook.github.io%2F2020%2F04%2Fpredicting-catalog-demand%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhhook.github.io%2F2020%2F04%2Fpredicting-default-risk%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
