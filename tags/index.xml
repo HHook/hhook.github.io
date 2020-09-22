@@ -8,10 +8,37 @@
     <language>en-us</language>
     <managingEditor>hln.hook@gmail.com (Helena Hook)</managingEditor>
     <webMaster>hln.hook@gmail.com (Helena Hook)</webMaster>
-    <lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://hhook.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>linear regression</title>
+      <link>https://hhook.github.io/tags/linear-regression/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <author>hln.hook@gmail.com (Helena Hook)</author>
+      <guid>https://hhook.github.io/tags/linear-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://hhook.github.io/tags/python/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <author>hln.hook@gmail.com (Helena Hook)</author>
+      <guid>https://hhook.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scikit-learn</title>
+      <link>https://hhook.github.io/tags/scikit-learn/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <author>hln.hook@gmail.com (Helena Hook)</author>
+      <guid>https://hhook.github.io/tags/scikit-learn/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>alteryx</title>
