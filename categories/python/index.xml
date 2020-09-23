@@ -20,8 +20,8 @@
       <author>hln.hook@gmail.com (Helena Hook)</author>
       <guid>https://hhook.github.io/2020/08/predicting-catalog-demand-with-scikit-learn/</guid>
       <description>&lt;h4 id=&#34;continuation-of-udacity-project&#34;&gt;Continuation of Udacity project&lt;/h4&gt;
-&lt;p&gt;This project has been finished previously using Alteryx analytics software as project work for Udacity&amp;rsquo;s Predictive Analytics for Business nanodegree.&lt;br&gt;
-We will go through this project again with Python using scikit-learn and see how similarly our linear regression model performs on different platorm.&lt;/p&gt;</description>
+&lt;p&gt;This project has been finished previously using Alteryx analytics software as &lt;a href=&#34;https://hhook.github.io/2020/04/predicting-catalog-demand/&#34;&gt;project work&lt;/a&gt; for Udacity&amp;rsquo;s Predictive Analytics for Business nanodegree.&lt;br&gt;
+This time we will go through this project with Python using scikit-learn and see how if our recommendation for the management changes using different tools.&lt;/p&gt;</description>
     </item>
     
   </channel>
