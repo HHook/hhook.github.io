@@ -8,10 +8,37 @@
     <language>en-us</language>
     <managingEditor>helena@datahook.co.uk (Helena Hook)</managingEditor>
     <webMaster>helena@datahook.co.uk (Helena Hook)</webMaster>
-    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://hhook.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>business</title>
+      <link>https://hhook.github.io/tags/business/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      <author>helena@datahook.co.uk (Helena Hook)</author>
+      <guid>https://hhook.github.io/tags/business/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data analysis</title>
+      <link>https://hhook.github.io/tags/data-analysis/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      <author>helena@datahook.co.uk (Helena Hook)</author>
+      <guid>https://hhook.github.io/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://hhook.github.io/tags/python/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      <author>helena@datahook.co.uk (Helena Hook)</author>
+      <guid>https://hhook.github.io/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>gradient boosting</title>
@@ -32,38 +59,11 @@
     </item>
     
     <item>
-      <title>python</title>
-      <link>https://hhook.github.io/tags/python/</link>
-      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
-      <author>helena@datahook.co.uk (Helena Hook)</author>
-      <guid>https://hhook.github.io/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>scikit-learn</title>
       <link>https://hhook.github.io/tags/scikit-learn/</link>
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
       <author>helena@datahook.co.uk (Helena Hook)</author>
       <guid>https://hhook.github.io/tags/scikit-learn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>business</title>
-      <link>https://hhook.github.io/tags/business/</link>
-      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-      <author>helena@datahook.co.uk (Helena Hook)</author>
-      <guid>https://hhook.github.io/tags/business/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>data analysis</title>
-      <link>https://hhook.github.io/tags/data-analysis/</link>
-      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-      <author>helena@datahook.co.uk (Helena Hook)</author>
-      <guid>https://hhook.github.io/tags/data-analysis/</guid>
       <description></description>
     </item>
     

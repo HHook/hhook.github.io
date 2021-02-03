@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.69.2 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Helena Hook">
+<meta name="keywords" content="">
+<meta name="description" content="Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with Forage and Quantium, a leading data science and AI Firm with a track record of innovation in data science.">
+
+
+<meta property="og:description" content="Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with Forage and Quantium, a leading data science and AI Firm with a track record of innovation in data science.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quantium Virtual Internship">
+<meta name="twitter:title" content="Quantium Virtual Internship">
+<meta property="og:url" content="https://hhook.github.io/2021/01/quantium-virtual-internship/">
+<meta property="twitter:url" content="https://hhook.github.io/2021/01/quantium-virtual-internship/">
+<meta property="og:site_name" content="Data Hook">
+<meta property="og:description" content="Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with Forage and Quantium, a leading data science and AI Firm with a track record of innovation in data science.">
+<meta name="twitter:description" content="Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with Forage and Quantium, a leading data science and AI Firm with a track record of innovation in data science.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2021-01-31T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-01-31T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="python">
+    
+      <meta property="article:section" content="internship">
+    
+  
+  
+    
+      <meta property="article:tag" content="python">
+    
+      <meta property="article:tag" content="data analysis">
+    
+      <meta property="article:tag" content="business">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@hook_ds">
+
+
+  <meta name="twitter:creator" content="@hook_ds">
+
+
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1612377221/chips1-gr-stocks-OTjz3Lr9zqE-unsplash_wtslky.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1612377221/chips1-gr-stocks-OTjz3Lr9zqE-unsplash_wtslky.jpg">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1612377221/chips1-gr-stocks-OTjz3Lr9zqE-unsplash_wtslky.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1612377221/chips1-gr-stocks-OTjz3Lr9zqE-unsplash_wtslky.jpg">
+
+
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1592489252/hhook_profile.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/dvhcke0re/image/upload/v1592489252/hhook_profile.jpg">
+
+
+    <title>Quantium Virtual Internship</title>
+
+    <link rel="icon" href="https://hhook.github.io/themes/tranquilpeak/static/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://hhook.github.io/2021/01/quantium-virtual-internship/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://hhook.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+
+<link id="favicon" rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dvhcke0re/image/upload/v1593387619/favicon/favicon_dh.ico">
+
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://hhook.github.io/">Data Hook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://hhook.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://res.cloudinary.com/dvhcke0re/image/upload/v1592489252/hhook_profile.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+    
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://hhook.github.io/">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/dvhcke0re/image/upload/v1592489252/hhook_profile.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Helena Hook</h4>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://hhook.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://hhook.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://hhook.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://hhook.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/HHook" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/helena-hook-2992021a8/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/hook_ds" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://hhook.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('https://res.cloudinary.com/dvhcke0re/image/upload/v1612377221/chips1-gr-stocks-OTjz3Lr9zqE-unsplash_wtslky.jpg')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Quantium Virtual Internship
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-01-31T00:00:00Z">
+        
+  January 31, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://hhook.github.io/categories/python">python</a>, 
+    
+      <a class="category-link" href="https://hhook.github.io/categories/internship">internship</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with <a href="https://www.theforage.com/virtual-internships/prototype/NkaC7knWtjSbi6aYv/Data-Analytics?ref=kh22opepLRepWYSK3">Forage</a> and Quantium, a leading data science and AI Firm with a track record of innovation in data science.</p>
+<p>Code for this project is available on my <a href="https://github.com/HHook/QUANTIUM-virtual-internship">github</a>.</p>
+<h1 id="overview">Overview</h1>
+<p>These tasks work through a common narrative, designed to replicate life in the Retail Analytics and Strategy team at Quantium.</p>
+<p>Quantium has had a data partnership with a large supermarket brand for the last few years who provide transactional and customer data. We are goung through this problem as an analyst within the Quantium analytics team and are responsible for delivering highly valued data analytics and insights to help the business make strategic decisions.</p>
+<h2 id="the-task">The task</h2>
+<p>We need to analyse the data to understand current purchasing trends and behaviours. The client is particularly interested in customer segments and their chip purchasing behaviour.</p>
+<p>Our insights need to have a commercial application as our end goal is to form a strategy based on the findings to provide a clear recommendation to the Category Manager.</p>
+<h1 id="pre-processing">Pre-processing</h1>
+<p>We will start with pre-processing our data before we get into analysing customer segments and sales.</p>
+<p>High level data checks:</p>
+<ul>
+<li>summaries of the data</li>
+<li>find outliers and removing these</li>
+<li>Check data formats and correct</li>
+</ul>
+<p>Derive extra features:</p>
+<ul>
+<li>pack size</li>
+<li>brand name</li>
+</ul>
+<p>Examine:</p>
+<ul>
+<li>inconsistencies</li>
+<li>missing data</li>
+<li>correctly identified category items</li>
+</ul>
+<h1 id="explore-date">Explore date</h1>
+<p>Straight away we see that date is in a strange format. This is an old excel date format of days after 30/12/1899. We will convert it to a regular date.<br>
+<em>info <a href="https://support.smartbear.com/testcomplete/docs/scripting/working-with/dates/python.html">https://support.smartbear.com/testcomplete/docs/scripting/working-with/dates/python.html</a></em></p>
+<p>First day: 2018-07-01 00:00:00<br>
+Last day: 2019-06-30 00:00:00<br>
+Number of unique dates: 364</p>
+<p>Looks like transactions from one day are missing (as there are usually 365 days per year and we found records for only 364 days.)  The missing date is Christmas day December 25th 2018, when the shop is closed so it is not an anomaly.</p>
+<h3 id="number-of-transactions-over-time">Number of transactions over time</h3>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption " >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/output_5_0.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/output_5_0.png" >
+  
+    </a>
+  
+  
+</div>
+
+<h3 id="closer-look-at-december">Closer look at December</h3>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption " >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/output_7_0.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/output_7_0.png" >
+  
+    </a>
+  
+  
+</div>
+
+<h1 id="derive-features">Derive features</h1>
+<h3 id="weight">Weight</h3>
+<p>Because the weight of the product is attached to it&rsquo;s product name, we will need to extract the weight from each product name to a new column.</p>
+
+
+<div>
+<style scoped>
+	.dataframe {font-size: 10pt;}
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: right;
+        padding: 1px;
+        padding-left:5px;
+        padding-right:0px;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: right;
+        padding: 1px;
+        padding-right:0px;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+        padding: 0px;
+        padding-left:5px;
+        padding-right:0px;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th></th>
+      <th>Product name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>97</th>
+      <td>Cheetos Puffs 165g</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Kettle 135g Swt Pot Sea Salt</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>Burger Rings 220g</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Most popular pack sizes are 175g and 150g.<br>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption " >
+  
+    <a class="fancybox" href="https://hhook.github.io/images/output_11_0.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://hhook.github.io/images/output_11_0.png" >
+  
+    </a>
+  
+  
+</div>
+</p>
+<h3 id="brand-name">Brand name</h3>
+<p>Extract brand name from product name as we did with the weight.</p>
+<p>After checking the extracted brand names we will combine some that are the same but written in a different way.<br>
+&lsquo;Red&rsquo; = &lsquo;Red Rock Deli&rsquo;<br>
+&lsquo;RRD&rsquo; = &lsquo;Red Rock Deli&rsquo;<br>
+&lsquo;Old&rsquo; = &lsquo;Old El Paso&rsquo;<br>
+&lsquo;WW&rsquo; = &lsquo;Woolworths&rsquo;<br>
+&lsquo;Dorito&rsquo; = &lsquo;Doritos&rsquo;<br>
+&lsquo;Natural&rsquo; = &lsquo;Natural Chip Co&rsquo;<br>
+&lsquo;NCC&rsquo; = &lsquo;Natural Chip Co&rsquo;<br>
+&lsquo;Infzns&rsquo; = &lsquo;Infuzions&rsquo;<br>
+&lsquo;Snbts&rsquo; = &lsquo;Sunbites&rsquo;<br>
+&lsquo;GrnWves&rsquo; = &lsquo;Sunbites&rsquo;<br>
+&lsquo;Burger&rsquo; = &lsquo;Smiths&rsquo;<br>
+&lsquo;Smith&rsquo; = &lsquo;Smiths&rsquo;<br>
+&lsquo;French&rsquo; = &lsquo;French Fries&rsquo;</p>
+<h3 id="wrong-categories">Wrong categories</h3>
+<p>Let&rsquo;s find products that are not chips and remove them from our dataset.</p>
+<p>Old El Paso Salsa Dips are wrongly categories under chips.</p>
+<pre><code>Old El Paso Salsa   Dip Chnky Tom Ht300g    3125
+Old El Paso Salsa   Dip Tomato Med 300g     3114
+Old El Paso Salsa   Dip Tomato Mild 300g    3085
+</code></pre>
+<p>Woolworth salsas wrongly categorised under chips.</p>
+<pre><code>Woolworths Mild     Salsa 300g    1491
+Woolworths Medium   Salsa 300g    1430
+</code></pre>
+<p>Doritos salsas wrongly categorised under chips.</p>
+<pre><code>Doritos Salsa Mild  300g           1472
+Doritos Salsa       Medium 300g    1449
+</code></pre>
+<p>Dip in Smiths brand is just a name for chip flavor, not wrongly categorised so we will keep those.</p>
+<pre><code>Smiths Crinkle Cut  French OnionDip 150g    1438
+</code></pre>
+<h1 id="product-quantities">Product quantities</h1>
+<p>After exploring in which quantities chips are bought we find an outlier on 2 records with 200 units bought each time. These to purchases are from the same customer and they don&rsquo;t have any other records over the year. This could mean they are not a regular consumer and might be buying chips for commercial purposes. We will remove this customer&rsquo;s records from our dataset.</p>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th></th>
+      <th>DATE</th>
+      <th>STORE_NBR</th>
+      <th>LYLTY_CARD_NBR</th>
+      <th>TXN_ID</th>
+      <th>PROD_NBR</th>
+      <th>PROD_NAME</th>
+      <th>PROD_QTY</th>
+      <th>TOT_SALES</th>
+      <th>weight</th>
+      <th>brand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>69762</th>
+      <td>2018-08-19</td>
+      <td>226</td>
+      <td>226000</td>
+      <td>226201</td>
+      <td>4</td>
+      <td>Dorito Corn Chp     Supreme 380g</td>
+      <td>200</td>
+      <td>650.0</td>
+      <td>380</td>
+      <td>Doritos</td>
+    </tr>
+    <tr>
+      <th>69763</th>
+      <td>2019-05-20</td>
+      <td>226</td>
+      <td>226000</td>
+      <td>226210</td>
+      <td>4</td>
+      <td>Dorito Corn Chp     Supreme 380g</td>
+      <td>200</td>
+      <td>650.0</td>
+      <td>380</td>
+      <td>Doritos</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="most-popular-brands">Most popular brands</h2>
+<p>Most popular brands overall are Kettle, Smiths, Doritos and Pringles in total appearing in 50% of transactions.
+
+  
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+
+<div id="/images/plotly/most_popular_brands.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/most_popular_brands.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/most_popular_brands.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<h3 id="combine-transaction-and-customer-data">Combine transaction and customer data</h3>
+<p>We combined customer and transaction data by loyalty card number to understand from which customers segments our transactions are from.<br>
+We now have a datatable with 249,668 records and 12 columns.</p>
+<h6 id="now-that-we-are-done-with-preprocessing-our-dataset-and-doing-some-high-level-analysis-lets-move-on-to-exploring-the-sales-and-customer-segments-more-closely">Now that we are done with preprocessing our dataset and doing some high level analysis, let&rsquo;s move on to exploring the sales and customer segments more closely.</h6>
+<h1 id="exploring-sales">Exploring sales</h1>
+<h3 id="data-analysis-and-customer-segments">Data analysis and customer segments</h3>
+<p>Defining metrics:</p>
+<ul>
+<li>total sales</li>
+<li>drivers of sales</li>
+<li>where the highest sales are coming from</li>
+<li>chips bought per customer by segment</li>
+<li>average chip price by customer segment</li>
+</ul>
+<h2 id="number-of-customers-in-each-segment">Number of customers in each segment</h2>
+<p>We have 71,517 unique customers in total.</p>
+<p>
+
+
+<div id="/images/plotly/customers_in_segments.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/customers_in_segments.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/customers_in_segments.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Premiums in lifestages:<br>
+Prominently budget groups are older families, young families and new families.<br>
+Prominently mainstream groups are young singles/couples, retirees and midage singles/couples.<br>
+Most premium customers can be found in older singles/couples and retirees.</p>
+<h2 id="number-of-transactions-in-each-segment">Number of transactions in each segment</h2>
+<p>
+
+
+<div id="/images/plotly/transactions_in_segments.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/transactions_in_segments.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/transactions_in_segments.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Most transactions are from budget older families, mainstream retirees and mainstream young singles/couples.</p>
+<p>Lifestage:<br>
+21% of all transactions are from customers in older singles/couples lifestage.<br>
+19% from retirees.<br>
+18% from older families.<br>
+16% from younger families.<br>
+14% from young singles/couples.<br>
+9% from midage singles/couples.<br>
+and 3% from new families.<br>
+In total that means 58% of all transactions are from older people.</p>
+<h2 id="sales-in-each-segment">Sales in each segment</h2>
+<p>
+
+
+<div id="/images/plotly/sales_in_segments.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/sales_in_segments.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/sales_in_segments.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Top sales are coming from:<br>
+budget - older families<br>
+mainstream - young singles/couples<br>
+mainstream - retirees</p>
+<p>High sales from mainstream young singles/couples and mainstream retirees make sense because these are top number of customers in segments. 11% (top #1) of all customers are in mainstream young singles/couples and 9% (top #2) are mainstream retirees.</p>
+<p>Budget older families though are only 6% of all customer segment, so their sales are purely driven by how often and how much they buy.</p>
+<h2 id="average-number-of-chips-bought-per-customer">Average number of chips bought per customer</h2>
+<p>
+
+
+<div id="/images/plotly/average_units.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/average_units.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/average_units.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Older families and young families on average buy the most units of chips per person.(over the course of a year)</p>
+<h1 id="average-chip-price-per-segment">Average chip price per segment</h1>
+<p>
+
+
+<div id="/images/plotly/average_price.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/average_price.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/average_price.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Average chip prices vary from min 3.67 to 4.06.<br>
+In mainstream midage singles/couples and mainstream young singles/couples it seems like customers are choosing chips with  slightly higher prices.</p>
+<p>Let&rsquo;s find out if that difference is significant.<br>
+ </p>
+<h2 id="statistical-signifcance-in-average-chip-price">Statistical signifcance in average chip price</h2>
+<p>Our null hypothesis is that the average price of chips between groups is not significantly different.<br>
+We will compare average pack price in midage and young singles/couples mainstream vs budget and premium.<br>
+If the resulting p-value is smaller than 0.05 we will reject our null hypothesis and can say there is a significant difference in the average chip price for these groups.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scipy<span style="color:#f92672">.</span>stats<span style="color:#f92672">.</span>ttest_ind(mainstream, not_mainstream, equal_var<span style="color:#f92672">=</span>False)
+	Ttest_indResult(statistic<span style="color:#f92672">=</span><span style="color:#ae81ff">6.72690465676574</span>, pvalue<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0340566024200332</span>)
+</code></pre></div><p>Because our p-value is smaller than 0.05 we can say the higher average chip price in given mainstream groups is significant and did not happen by chance.</p>
+<h2 id="what-is-special-about-mainstream-young-singlescouples">What is special about mainstream young singles/couples?</h2>
+<p>Let&rsquo;s see why this group&rsquo;s average chip price is higher than in budget and premium.</p>
+<p>Every other customer segment had Smiths and Kettle in their top 2 favourite chip brands. Except mainstream young singles/couples who had Doritos brand instead of Smiths.</p>
+<h4 id="how-likely-are-mainstream-young-singlescouples-to-buy-certain-brands">How likely are mainstream young singles/couples to buy certain brands?</h4>
+<p>We compared percentages of brands bought in our target group to percentages of brands bought in rest of the customers and compared the difference between those per brand.</p>
+<p>Biggest differences in brands:<br>
+Mainstream young singles/couples are 23% more likely to purchase Tyrrells than others.<br>
+Mainstream young singles/couples are 52% less likely to purchase Woolworths chips.</p>
+<h4 id="what-about-mainstream-midage-singlescouples">What about mainstream midage singles/couples?</h4>
+<p>Biggest differences in brands:<br>
+Mainstream midage singles/couples are 16% more likely to purchase Kettle than others.<br>
+Mainstream midage singles/couples are 43% less likely to purchase Sunbites chips.</p>
+<h3 id="pack-sizes">Pack sizes</h3>
+<p>Mainstream midage and young singles/couples have a slightly higher mean in pack sizes bought compared to their premium and budget groups, but median is 170g between all.<br>
+ </p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Top sales are coming from:</p>
+<ol>
+<li>Budget - older families</li>
+<li>Mainstream - young singles/couples</li>
+<li>Mainstream - retirees</li>
+</ol>
+<p>High sales from mainstream young singles/couples and mainstream retirees make sense because these are top number of customers in segments. 11% (top #1) of all customers are in mainstream young singles/couples and 9% (top #2) are mainstream retirees.</p>
+<p>Budget older families though are only 6% of all customers, so their sales are purely driven by how often and how much they buy.</p>
+<p>Most units of chips on average per person are bought by older families and young families.</p>
+<p>Average chip prices vary from 3.67 to 4.06. <br>
+Mainstream midage singles/couples and mainstream young singles/couples customers are buying chips with slightly higher prices than others.</p>
+<p>We looked into those groups more closely and found some preferences in brands.<br>
+Mainstream young singles/couples are:<br>
+23% more likely to purchase Tyrrells than others.<br>
+52% less likely to purchase Woolworths chips.</p>
+<p>Mainstream midage singles/couples are:<br>
+16% more likely to purchase Kettle than others.<br>
+43% less likely to purchase Sunbites chips.</p>
+<p>Because these groups are willing to pay more per pack of chips and have preferences with certain brands, we could recommend raising visibility of Tyrrells and Kettle chips by putting them in areas where everyone goes through, like the entrance and checkout.</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://hhook.github.io/tags/python/">python</a>
+
+  <a class="tag tag--primary tag--small" href="https://hhook.github.io/tags/data-analysis/">data analysis</a>
+
+  <a class="tag tag--primary tag--small" href="https://hhook.github.io/tags/business/">business</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hhook.github.io/2020/11/anz-virtual-internship/" data-tooltip="ANZ Virtual Internship">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hhook.github.io/2021/01/quantium-virtual-internship/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hhook.github.io/2021/01/quantium-virtual-internship/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Helena Hook. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hhook.github.io/2020/11/anz-virtual-internship/" data-tooltip="ANZ Virtual Internship">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hhook.github.io/2021/01/quantium-virtual-internship/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hhook.github.io/2021/01/quantium-virtual-internship/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhhook.github.io%2F2021%2F01%2Fquantium-virtual-internship%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhhook.github.io%2F2021%2F01%2Fquantium-virtual-internship%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://res.cloudinary.com/dvhcke0re/image/upload/v1592489252/hhook_profile.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Helena Hook</h4>
+    
+
+    
+      <div id="about-card-email"><a href="mailto:helena@datahook.co.uk">helena@datahook.co.uk</a></div>
+    
+
+
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Analyst
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        London, UK
+      </div>
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://res.cloudinary.com/dvhcke0re/image/upload/v1592489539/B016125-R1-26-26A_gxnmkh.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://hhook.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

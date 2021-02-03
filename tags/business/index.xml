@@ -8,10 +8,19 @@
     <language>en-us</language>
     <managingEditor>helena@datahook.co.uk (Helena Hook)</managingEditor>
     <webMaster>helena@datahook.co.uk (Helena Hook)</webMaster>
-    <lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://hhook.github.io/tags/business/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quantium Virtual Internship</title>
+      <link>https://hhook.github.io/2021/01/quantium-virtual-internship/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      <author>helena@datahook.co.uk (Helena Hook)</author>
+      <guid>https://hhook.github.io/2021/01/quantium-virtual-internship/</guid>
+      <description>&lt;p&gt;Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with &lt;a href=&#34;https://www.theforage.com/virtual-internships/prototype/NkaC7knWtjSbi6aYv/Data-Analytics?ref=kh22opepLRepWYSK3&#34;&gt;Forage&lt;/a&gt; and Quantium, a leading data science and AI Firm with a track record of innovation in data science.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Increasing profit in a five star luxury environment</title>
