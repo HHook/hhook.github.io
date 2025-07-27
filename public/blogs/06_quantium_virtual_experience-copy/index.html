@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=favicon_dh.ico type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:url" content="http://localhost:1313/blogs/06_quantium_virtual_experience-copy/">
+  <meta property="og:site_name" content="Datahook: Helena">
+  <meta property="og:title" content="Quantium Virtual Internship">
+  <meta property="og:description" content="Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with Forage and Quantium, a leading data science and AI Firm with a track record of innovation in data science.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2021-01-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-01-31T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Data Analysis">
+    <meta property="article:tag" content="Business">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Quantium Virtual Internship">
+  <meta name="twitter:description" content="Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with Forage and Quantium, a leading data science and AI Firm with a track record of innovation in data science.">
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #343a40;
+        --text-secondary-color: #5a5b5c;
+        --text-link-color: #5a5b5c;
+        --background-color: #eeeee4;
+        --secondary-background-color: #ee8335;
+        --primary-color: #5a5b5c;
+        --secondary-color: #f8f9fa;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #096cd6;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-6/all-6.4.2.js"></script>
+
+
+  
+  
+
+  <title>
+Quantium Virtual Internship | Datahook: Helena
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+<script>
+    var prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function showHeaderOnScroll() {
+        let profileHeaderElem = document.getElementById("profileHeader");
+        let currentScrollPos = window.pageYOffset;
+        let resetHeaderStyle = false;
+        let showNavBarOnScrollUp =  true ;
+        let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
+        if (showNavBar) {
+            profileHeaderElem.classList.add("showHeaderOnTop");
+        } else {
+            resetHeaderStyle = true;
+        }
+        if(currentScrollPos === 0) {
+            resetHeaderStyle = true;
+        }
+        if(resetHeaderStyle) {
+            profileHeaderElem.classList.remove("showHeaderOnTop");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="/favicon_dh.ico" width="30" height="30"
+                    class="d-inline-block align-top">
+                Data Hook
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl &#43; k to Search...'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Ctrl &#43; k to Search...' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#contact"
+                            aria-label="contact">
+                            Contact
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/blogs" title="Blog posts">
+                            
+                            Blog
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">Quantium Virtual Internship</h1>
+            <div class="text-center">
+              
+                Helena
+                <small>|</small>
+              
+              Jan 31, 2021
+
+              
+              <span id="readingTime">
+                min read
+              </span>
+              
+            </div>
+          </div>
+          
+          <div class="featured-image">
+            <img class="img-fluid mx-auto d-block" src="https://res.cloudinary.com/dvhcke0re/image/upload/v1612377221/chips1-gr-stocks-OTjz3Lr9zqE-unsplash_wtslky.jpg" alt="Quantium Virtual Internship">
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with <a href="https://www.theforage.com/virtual-internships/prototype/NkaC7knWtjSbi6aYv/Data-Analytics?ref=kh22opepLRepWYSK3">Forage</a> and Quantium, a leading data science and AI Firm with a track record of innovation in data science.</p>
+<p>Code for this project is available on my <a href="https://github.com/HHook/QUANTIUM-virtual-internship">github</a>.</p>
+<h1 id="overview">Overview</h1>
+<p>These tasks work through a common narrative, designed to replicate life in the Retail Analytics and Strategy team at Quantium.</p>
+<p>Quantium has had a data partnership with a large supermarket brand for the last few years who provide transactional and customer data. We are goung through this problem as an analyst within the Quantium analytics team and are responsible for delivering highly valued data analytics and insights to help the business make strategic decisions.</p>
+<h2 id="the-task">The task</h2>
+<p>We need to analyse the data to understand current purchasing trends and behaviours. The client is particularly interested in customer segments and their chip purchasing behaviour.</p>
+<p>Our insights need to have a commercial application as our end goal is to form a strategy based on the findings to provide a clear recommendation to the Category Manager.</p>
+<h1 id="pre-processing">Pre-processing</h1>
+<p>We will start with pre-processing our data before we get into analysing customer segments and sales.</p>
+<p>High level data checks:</p>
+<ul>
+<li>summaries of the data</li>
+<li>find outliers and removing these</li>
+<li>Check data formats and correct</li>
+</ul>
+<p>Derive extra features:</p>
+<ul>
+<li>pack size</li>
+<li>brand name</li>
+</ul>
+<p>Examine:</p>
+<ul>
+<li>inconsistencies</li>
+<li>missing data</li>
+<li>correctly identified category items</li>
+</ul>
+<h1 id="explore-date">Explore date</h1>
+<p>Straight away we see that date is in a strange format. This is an old excel date format of days after 30/12/1899. We will convert it to a regular date.</p>
+<!-- *info https://support.smartbear.com/testcomplete/docs/scripting/working-with/dates/python.html*   -->
+<p>First day: 2018-07-01 00:00:00<br>
+Last day: 2019-06-30 00:00:00<br>
+Number of unique dates: 364</p>
+<p>Looks like transactions from one day are missing (as there are usually 365 days per year and we found records for only 364 days.)  The missing date is Christmas day December 25th 2018, when the shop is closed so it is not an anomaly.</p>
+<h3 id="number-of-transactions-over-time">Number of transactions over time</h3>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption " >
+  
+    <a class="fancybox" href="/images/output_5_0.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/output_5_0.png" >
+  
+    </a>
+  
+  
+</div>
+
+<h3 id="closer-look-at-december">Closer look at December</h3>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption " >
+  
+    <a class="fancybox" href="/images/output_7_0.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/output_7_0.png" >
+  
+    </a>
+  
+  
+</div>
+
+<h1 id="derive-features">Derive features</h1>
+<h3 id="weight">Weight</h3>
+<p>Because the weight of the product is attached to it&rsquo;s product name, we will need to extract the weight from each product name to a new column.</p>
+
+
+<div>
+<style scoped>
+	.dataframe {font-size: 10pt;}
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: right;
+        padding: 1px;
+        padding-left:8px;
+        padding-right:8px;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: right;
+        padding: 1px;
+        padding-right:0px;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+        padding: 0px;
+        padding-left:5px;
+        padding-right:0px;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th></th>
+      <th>Product name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>97</th>
+      <td>Cheetos Puffs 165g</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Kettle 135g Swt Pot Sea Salt</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>Burger Rings 220g</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Most popular pack sizes are 175g and 150g.<br>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption " >
+  
+    <a class="fancybox" href="/images/output_11_0.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/output_11_0.png" >
+  
+    </a>
+  
+  
+</div>
+</p>
+<h3 id="brand-name">Brand name</h3>
+<p>Extract brand name from product name as we did with the weight.</p>
+<p>After checking the extracted brand names we will combine some that are the same but written in a different way.<br>
+&lsquo;Red&rsquo; = &lsquo;Red Rock Deli&rsquo;<br>
+&lsquo;RRD&rsquo; = &lsquo;Red Rock Deli&rsquo;<br>
+&lsquo;Old&rsquo; = &lsquo;Old El Paso&rsquo;<br>
+&lsquo;WW&rsquo; = &lsquo;Woolworths&rsquo;<br>
+&lsquo;Dorito&rsquo; = &lsquo;Doritos&rsquo;<br>
+&lsquo;Natural&rsquo; = &lsquo;Natural Chip Co&rsquo;<br>
+&lsquo;NCC&rsquo; = &lsquo;Natural Chip Co&rsquo;<br>
+&lsquo;Infzns&rsquo; = &lsquo;Infuzions&rsquo;<br>
+&lsquo;Snbts&rsquo; = &lsquo;Sunbites&rsquo;<br>
+&lsquo;GrnWves&rsquo; = &lsquo;Sunbites&rsquo;<br>
+&lsquo;Burger&rsquo; = &lsquo;Smiths&rsquo;<br>
+&lsquo;Smith&rsquo; = &lsquo;Smiths&rsquo;<br>
+&lsquo;French&rsquo; = &lsquo;French Fries&rsquo;</p>
+<h3 id="wrong-categories">Wrong categories</h3>
+<p>Let&rsquo;s find products that are not chips and remove them from our dataset.</p>
+<p>Old El Paso Salsa Dips are wrongly categories under chips.</p>
+<pre><code>Old El Paso Salsa   Dip Chnky Tom Ht300g    3125
+Old El Paso Salsa   Dip Tomato Med 300g     3114
+Old El Paso Salsa   Dip Tomato Mild 300g    3085
+</code></pre>
+<p>Woolworth salsas wrongly categorised under chips.</p>
+<pre><code>Woolworths Mild     Salsa 300g    1491
+Woolworths Medium   Salsa 300g    1430
+</code></pre>
+<p>Doritos salsas wrongly categorised under chips.</p>
+<pre><code>Doritos Salsa Mild  300g           1472
+Doritos Salsa       Medium 300g    1449
+</code></pre>
+<p>Dip in Smiths brand is just a name for chip flavor, not wrongly categorised so we will keep those.</p>
+<pre><code>Smiths Crinkle Cut  French OnionDip 150g    1438
+</code></pre>
+<h1 id="product-quantities">Product quantities</h1>
+<p>After exploring in which quantities chips are bought we find an outlier on 2 records with 200 units bought each time. These to purchases are from the same customer and they don&rsquo;t have any other records over the year. This could mean they are not a regular consumer and might be buying chips for commercial purposes. We will remove this customer&rsquo;s records from our dataset.</p>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th></th>
+      <th>DATE</th>
+      <th>STORE_NBR</th>
+      <th>LYLTY_CARD_NBR</th>
+      <th>TXN_ID</th>
+      <th>PROD_NBR</th>
+      <th>PROD_NAME</th>
+      <th>PROD_QTY</th>
+      <th>TOT_SALES</th>
+      <th>weight</th>
+      <th>brand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>69762</th>
+      <td>2018-08-19</td>
+      <td>226</td>
+      <td>226000</td>
+      <td>226201</td>
+      <td>4</td>
+      <td>Dorito Corn Chp     Supreme 380g</td>
+      <td>200</td>
+      <td>650.0</td>
+      <td>380</td>
+      <td>Doritos</td>
+    </tr>
+    <tr>
+      <th>69763</th>
+      <td>2019-05-20</td>
+      <td>226</td>
+      <td>226000</td>
+      <td>226210</td>
+      <td>4</td>
+      <td>Dorito Corn Chp     Supreme 380g</td>
+      <td>200</td>
+      <td>650.0</td>
+      <td>380</td>
+      <td>Doritos</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="most-popular-brands">Most popular brands</h2>
+<p>Most popular brands overall are Kettle, Smiths, Doritos and Pringles in total appearing in 50% of transactions.
+
+  
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+
+<div id="/images/plotly/most_popular_brands.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/most_popular_brands.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/most_popular_brands.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<h3 id="combine-transaction-and-customer-data">Combine transaction and customer data</h3>
+<p>We combined customer and transaction data by loyalty card number to understand from which customers segments our transactions are from.<br>
+We now have a datatable with 249,668 records and 12 columns.</p>
+<h6 id="now-that-we-are-done-with-preprocessing-our-dataset-and-doing-some-high-level-analysis-lets-move-on-to-exploring-the-sales-and-customer-segments-more-closely">Now that we are done with preprocessing our dataset and doing some high level analysis, let&rsquo;s move on to exploring the sales and customer segments more closely.</h6>
+<h1 id="exploring-sales">Exploring sales</h1>
+<h3 id="data-analysis-and-customer-segments">Data analysis and customer segments</h3>
+<p>Defining metrics:</p>
+<ul>
+<li>total sales</li>
+<li>drivers of sales</li>
+<li>where the highest sales are coming from</li>
+<li>chips bought per customer by segment</li>
+<li>average chip price by customer segment</li>
+</ul>
+<h2 id="number-of-customers-in-each-segment">Number of customers in each segment</h2>
+<p>We have 71,517 unique customers in total.</p>
+<p>
+
+
+<div id="/images/plotly/customers_in_segments.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/customers_in_segments.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/customers_in_segments.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Premiums in lifestages:<br>
+Prominently budget groups are older families, young families and new families.<br>
+Prominently mainstream groups are young singles/couples, retirees and midage singles/couples.<br>
+Most premium customers can be found in older singles/couples and retirees.</p>
+<h2 id="number-of-transactions-in-each-segment">Number of transactions in each segment</h2>
+<p>
+
+
+<div id="/images/plotly/transactions_in_segments.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/transactions_in_segments.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/transactions_in_segments.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Most transactions are from budget older families, mainstream retirees and mainstream young singles/couples.</p>
+<p>Lifestage:<br>
+21% of all transactions are from customers in older singles/couples lifestage.<br>
+19% from retirees.<br>
+18% from older families.<br>
+16% from younger families.<br>
+14% from young singles/couples.<br>
+9% from midage singles/couples.<br>
+and 3% from new families.<br>
+In total that means 58% of all transactions are from older people.</p>
+<h2 id="sales-in-each-segment">Sales in each segment</h2>
+<p>
+
+
+<div id="/images/plotly/sales_in_segments.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/sales_in_segments.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/sales_in_segments.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Top sales are coming from:<br>
+budget - older families<br>
+mainstream - young singles/couples<br>
+mainstream - retirees</p>
+<p>High sales from mainstream young singles/couples and mainstream retirees make sense because these are top number of customers in segments. 11% (top #1) of all customers are in mainstream young singles/couples and 9% (top #2) are mainstream retirees.</p>
+<p>Budget older families though are only 6% of all customer segment, so their sales are purely driven by how often and how much they buy.</p>
+<h2 id="average-number-of-chips-bought-per-customer">Average number of chips bought per customer</h2>
+<p>
+
+
+<div id="/images/plotly/average_units.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/average_units.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/average_units.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Older families and young families on average buy the most units of chips per person.(over the course of a year)</p>
+<h1 id="average-chip-price-per-segment">Average chip price per segment</h1>
+<p>
+
+
+<div id="/images/plotly/average_price.json" class="plotly" style="height:500px"></div>
+<script>
+Plotly.d3.json("/images/plotly/average_price.json", function(err, fig) {
+    Plotly.plot('\/images\/plotly\/average_price.json', fig.data, fig.layout, {responsive: true});
+});
+</script></p>
+<p>Average chip prices vary from min 3.67 to 4.06.<br>
+In mainstream midage singles/couples and mainstream young singles/couples it seems like customers are choosing chips with  slightly higher prices.</p>
+<p>Let&rsquo;s find out if that difference is significant.</p>
+<!-- &nbsp;   -->
+<h2 id="statistical-significance-in-average-chip-price">Statistical significance in average chip price</h2>
+<p>Our null hypothesis is that the average price of chips between groups is not significantly different.<br>
+We will compare average pack price in midage and young singles/couples mainstream vs budget and premium.<br>
+If the resulting p-value is smaller than 0.05 we will reject our null hypothesis and can say there is a significant difference in the average chip price for these groups.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>scipy<span style="color:#f92672">.</span>stats<span style="color:#f92672">.</span>ttest_ind(mainstream, not_mainstream, equal_var<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>	Ttest_indResult(statistic<span style="color:#f92672">=</span><span style="color:#ae81ff">6.72690465676574</span>, pvalue<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0340566024200332</span>)
+</span></span></code></pre></div><p>Because our p-value is smaller than 0.05 we can say the higher average chip price in given mainstream groups is significant and did not happen by chance.</p>
+<h2 id="what-is-special-about-mainstream-young-singlescouples">What is special about mainstream young singles/couples?</h2>
+<p>Let&rsquo;s see why this group&rsquo;s average chip price is higher than in budget and premium.</p>
+<p>Every other customer segment had Smiths and Kettle in their top 2 favourite chip brands. Except mainstream young singles/couples who had Doritos brand instead of Smiths.</p>
+<h3 id="how-likely-are-mainstream-young-singlescouples-to-buy-certain-brands">How likely are mainstream young singles/couples to buy certain brands?</h3>
+<p>We compared percentages of brands bought in our target group to percentages of brands bought in rest of the customers and compared the difference between those per brand.</p>
+<p>Biggest differences in brands:<br>
+Mainstream young singles/couples are 23% more likely to purchase Tyrrells than others.<br>
+Mainstream young singles/couples are 52% less likely to purchase Woolworths chips.</p>
+<h3 id="what-about-mainstream-midage-singlescouples">What about mainstream midage singles/couples?</h3>
+<p>Biggest differences in brands:<br>
+Mainstream midage singles/couples are 16% more likely to purchase Kettle than others.<br>
+Mainstream midage singles/couples are 43% less likely to purchase Sunbites chips.</p>
+<h3 id="pack-sizes">Pack sizes</h3>
+<p>Mainstream midage and young singles/couples have a slightly higher mean in pack sizes bought compared to their premium and budget groups, but median is 170g between all.<br>
+ </p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Top sales are coming from:</p>
+<ol>
+<li>Budget - older families</li>
+<li>Mainstream - young singles/couples</li>
+<li>Mainstream - retirees</li>
+</ol>
+<p>High sales from mainstream young singles/couples and mainstream retirees make sense because these are top number of customers in segments. 11% (top #1) of all customers are in mainstream young singles/couples and 9% (top #2) are mainstream retirees.</p>
+<p>Budget older families though are only 6% of all customers, so their sales are purely driven by how often and how much they buy.</p>
+<p>Most units of chips on average per person are bought by older families and young families.</p>
+<p>Average chip prices vary from 3.67 to 4.06. <br>
+Mainstream midage singles/couples and mainstream young singles/couples customers are buying chips with slightly higher prices than others.</p>
+<p>We looked into those groups more closely and found some preferences in brands.<br>
+Mainstream young singles/couples are:<br>
+23% more likely to purchase Tyrrells than others.<br>
+52% less likely to purchase Woolworths chips.</p>
+<p>Mainstream midage singles/couples are:<br>
+16% more likely to purchase Kettle than others.<br>
+43% less likely to purchase Sunbites chips.</p>
+<p>Because these groups are willing to pay more per pack of chips and have preferences with certain brands, we could recommend raising visibility of Tyrrells and Kettle chips by putting them in areas where everyone goes through, like the entrance and checkout.</p>
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-task">The task</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#number-of-transactions-over-time">Number of transactions over time</a></li>
+        <li><a href="#closer-look-at-december">Closer look at December</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#weight">Weight</a></li>
+        <li><a href="#brand-name">Brand name</a></li>
+        <li><a href="#wrong-categories">Wrong categories</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#most-popular-brands">Most popular brands</a>
+      <ul>
+        <li><a href="#combine-transaction-and-customer-data">Combine transaction and customer data</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#data-analysis-and-customer-segments">Data analysis and customer segments</a></li>
+      </ul>
+    </li>
+    <li><a href="#number-of-customers-in-each-segment">Number of customers in each segment</a></li>
+    <li><a href="#number-of-transactions-in-each-segment">Number of transactions in each segment</a></li>
+    <li><a href="#sales-in-each-segment">Sales in each segment</a></li>
+    <li><a href="#average-number-of-chips-bought-per-customer">Average number of chips bought per customer</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#statistical-significance-in-average-chip-price">Statistical significance in average chip price</a></li>
+    <li><a href="#what-is-special-about-mainstream-young-singlescouples">What is special about mainstream young singles/couples?</a>
+      <ul>
+        <li><a href="#how-likely-are-mainstream-young-singlescouples-to-buy-certain-brands">How likely are mainstream young singles/couples to buy certain brands?</a></li>
+        <li><a href="#what-about-mainstream-midage-singlescouples">What about mainstream midage singles/couples?</a></li>
+        <li><a href="#pack-sizes">Pack sizes</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+          <aside class="tags">
+            <h5>Tags</h5>
+            <ul class="tags-ul list-unstyled list-inline">
+              
+              <li class="list-inline-item"><a href="http://localhost:1313/tags/python"
+                target="_blank"
+              >python</a></li>
+              
+              <li class="list-inline-item"><a href="http://localhost:1313/tags/data-analysis"
+                target="_blank"
+              >data analysis</a></li>
+              
+              <li class="list-inline-item"><a href="http://localhost:1313/tags/business"
+                target="_blank"
+              >business</a></li>
+              
+            </ul>
+          </aside>
+          
+
+          
+          <aside class="social">
+            <h5>Social</h5>
+            <div class="social-content">
+              <ul class="list-inline">
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fblogs%2f06_quantium_virtual_experience-copy%2f">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://twitter.com/share?text=Quantium%20Virtual%20Internship&url=http%3a%2f%2flocalhost%3a1313%2fblogs%2f06_quantium_virtual_experience-copy%2f">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://api.whatsapp.com/send?text=Quantium%20Virtual%20Internship: http%3a%2f%2flocalhost%3a1313%2fblogs%2f06_quantium_virtual_experience-copy%2f">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href='mailto:?subject=Quantium%20Virtual%20Internship&amp;body=Check%20out%20this%20site http%3a%2f%2flocalhost%3a1313%2fblogs%2f06_quantium_virtual_experience-copy%2f'>
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+<div class="progress">
+  <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<Script src="/js/scrollProgressBar.js"></script>
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar =  true ;
+  if(stickyNavBar) {
+    let headerElem = document.getElementById("profileHeader");
+    let headerHeight = headerElem.offsetHeight + 15;
+    stickySideBarElem.style.top = headerHeight + "px";
+  } else {
+    stickySideBarElem.style.top = "50px";
+  }
+</script>
+
+
+<script src="/js/readingTime.js"></script>
+
+
+
+  </div><footer>
+    
+    
+
+    
+<section id="contact" class="py-5">
+    <div class="container">
+        <h3 class="text-center">Get in Touch</h3>
+        <div class="px-0 px-md-5 px-lg-5">
+            <div class="row justify-content-center px-md-5">
+                <div class="col-md-8 py-3">
+                    <div class="text-center">
+                        My inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+                    </div>
+                    
+                    <div class="text-center pt-3">
+                        <a 
+                            href='
+                                    mailto:helena@datahook.co.uk
+                                  '
+                            target="_blank"
+                            class="btn"
+                        >
+                            Mail me
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact-form-status"></div>
+</section>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+<div class="text-center pt-2">
+    
+
+    
+
+    
+
+    
+
+    
+</div><div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="http://localhost:1313/" title="Datahook: Helena">
+                        <img alt="Footer logo" src="/favicon_dh.ico"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2025  All rights reserved
+            <div class="text-secondary">
+                Made with
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and
+                <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
+                    title="Designed and developed by gurusabarish">
+                    Hugo Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (document.body.className.includes("dark")) {
+        document.body.classList.remove('dark');
+        localStorage.setItem("pref-theme", 'light');
+    }
+</script>
+
+
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>
