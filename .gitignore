@@ -1,0 +1,11 @@
+/public/
+/resources/
+/.hugo_build.lock
+hugo_stats.json
+.DS_Store
+Thumbs.db
+/node_modules/
+.env
+*.local
+.vscode/
+.idea/
