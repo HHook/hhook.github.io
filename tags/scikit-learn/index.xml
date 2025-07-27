@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scikit-Learn on Datahook: Helena</title>
+    <link>http://localhost:1313/tags/scikit-learn/</link>
+    <description>Recent content in Scikit-Learn on Datahook: Helena</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ANZ Virtual Internship</title>
+      <link>http://localhost:1313/blogs/05_anz_virtual_experience/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/05_anz_virtual_experience/</guid>
+      <description>&lt;p&gt;This is a post about a virtual work experience program I completed with &lt;a href=&#34;https://www.theforage.com/virtual-internships/prototype/ZLJCsrpkHo9pZBJNY/ANZ-Virtual-Internship&#34;&gt;Forage&lt;/a&gt; in their collaboration with ANZ, an Australian multinational banking and financial services company.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Predicting Catalog Demand - with scikit-learn</title>
+      <link>http://localhost:1313/blogs/03_predicting_catalog_deman_sklearn/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/03_predicting_catalog_deman_sklearn/</guid>
+      <description>&lt;h4 id=&#34;continuation-of-udacity-project&#34;&gt;Continuation of Udacity project&lt;/h4&gt;&#xA;&lt;p&gt;This time we will go through this project with Python using scikit-learn and see how the results differ from eachother from previous iteration.&lt;br&gt;&#xA;We’re tasked with predicting how much money a fictional company in the mail-order catalog business can expect to earn from sending out a catalog to new customers.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

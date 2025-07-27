@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Classification Models on Datahook: Helena</title>
+    <link>http://localhost:1313/tags/classification-models/</link>
+    <description>Recent content in Classification Models on Datahook: Helena</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/classification-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Predicting Default Risk</title>
+      <link>http://localhost:1313/blogs/02_predicting_default_risk_ud/</link>
+      <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/02_predicting_default_risk_ud/</guid>
+      <description>&lt;p&gt;In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

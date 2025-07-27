@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualisation on Datahook: Helena</title>
+    <link>http://localhost:1313/categories/data-visualisation/</link>
+    <description>Recent content in Data Visualisation on Datahook: Helena</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/data-visualisation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Increasing profit in a five star luxury environment</title>
+      <link>http://localhost:1313/blogs/04_increasing_profit_in_spirits_sales/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/04_increasing_profit_in_spirits_sales/</guid>
+      <description>&lt;p&gt;This is a solution I proposed for a data based problem while working in a successful five star luxury hotel cocktail bar.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
