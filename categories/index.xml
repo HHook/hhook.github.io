@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Datahook: Helena</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://hhook.github.io/categories/</link>
     <description>Recent content in Categories on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hhook.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Internship</title>
-      <link>http://localhost:1313/categories/internship/</link>
+      <link>https://hhook.github.io/categories/internship/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/internship/</guid>
+      <guid>https://hhook.github.io/categories/internship/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/categories/python/</link>
+      <link>https://hhook.github.io/categories/python/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/python/</guid>
+      <guid>https://hhook.github.io/categories/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Visualisation</title>
-      <link>http://localhost:1313/categories/data-visualisation/</link>
+      <link>https://hhook.github.io/categories/data-visualisation/</link>
       <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/data-visualisation/</guid>
+      <guid>https://hhook.github.io/categories/data-visualisation/</guid>
       <description></description>
     </item>
     <item>
       <title>Udacity</title>
-      <link>http://localhost:1313/categories/udacity/</link>
+      <link>https://hhook.github.io/categories/udacity/</link>
       <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/udacity/</guid>
+      <guid>https://hhook.github.io/categories/udacity/</guid>
       <description></description>
     </item>
   </channel>

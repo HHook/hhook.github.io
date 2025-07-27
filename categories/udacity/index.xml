@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Udacity on Datahook: Helena</title>
-    <link>http://localhost:1313/categories/udacity/</link>
+    <link>https://hhook.github.io/categories/udacity/</link>
     <description>Recent content in Udacity on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/udacity/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hhook.github.io/categories/udacity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Predicting Catalog Demand - with scikit-learn</title>
-      <link>http://localhost:1313/blogs/03_predicting_catalog_deman_sklearn/</link>
+      <link>https://hhook.github.io/blogs/03_predicting_catalog_deman_sklearn/</link>
       <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blogs/03_predicting_catalog_deman_sklearn/</guid>
+      <guid>https://hhook.github.io/blogs/03_predicting_catalog_deman_sklearn/</guid>
       <description>&lt;h4 id=&#34;continuation-of-udacity-project&#34;&gt;Continuation of Udacity project&lt;/h4&gt;&#xA;&lt;p&gt;This time we will go through this project with Python using scikit-learn and see how the results differ from eachother from previous iteration.&lt;br&gt;&#xA;We’re tasked with predicting how much money a fictional company in the mail-order catalog business can expect to earn from sending out a catalog to new customers.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Predicting Default Risk</title>
-      <link>http://localhost:1313/blogs/02_predicting_default_risk_ud/</link>
+      <link>https://hhook.github.io/blogs/02_predicting_default_risk_ud/</link>
       <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blogs/02_predicting_default_risk_ud/</guid>
+      <guid>https://hhook.github.io/blogs/02_predicting_default_risk_ud/</guid>
       <description>&lt;p&gt;In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Predicting Catalog Demand</title>
-      <link>http://localhost:1313/blogs/01_predicting_catalog_demand_ud/</link>
+      <link>https://hhook.github.io/blogs/01_predicting_catalog_demand_ud/</link>
       <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blogs/01_predicting_catalog_demand_ud/</guid>
+      <guid>https://hhook.github.io/blogs/01_predicting_catalog_demand_ud/</guid>
       <description>&lt;p&gt;In this project, we will analyze a fictional business problem in the mail-order catalog business. We&amp;rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.&lt;/p&gt;</description>
     </item>
   </channel>
