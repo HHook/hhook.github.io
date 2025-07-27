@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Datahook: Helena</title>
+    <link>https://hhook.github.io/</link>
+    <description>Recent content on Datahook: Helena</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://hhook.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chatbot: Helena&#39;s resume</title>
+      <link>https://hhook.github.io/blogs/07_helena_chatbot/</link>
+      <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/07_helena_chatbot/</guid>
+      <description>&lt;p&gt;My skills and experience chatbot - ask anything!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Quantium Virtual Internship</title>
+      <link>https://hhook.github.io/blogs/06_quantium_virtual_experience/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/06_quantium_virtual_experience/</guid>
+      <description>&lt;p&gt;Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with &lt;a href=&#34;https://www.theforage.com/virtual-internships/prototype/NkaC7knWtjSbi6aYv/Data-Analytics?ref=kh22opepLRepWYSK3&#34;&gt;Forage&lt;/a&gt; and Quantium, a leading data science and AI Firm with a track record of innovation in data science.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ANZ Virtual Internship</title>
+      <link>https://hhook.github.io/blogs/05_anz_virtual_experience/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/05_anz_virtual_experience/</guid>
+      <description>&lt;p&gt;This is a post about a virtual work experience program I completed with &lt;a href=&#34;https://www.theforage.com/virtual-internships/prototype/ZLJCsrpkHo9pZBJNY/ANZ-Virtual-Internship&#34;&gt;Forage&lt;/a&gt; in their collaboration with ANZ, an Australian multinational banking and financial services company.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Increasing profit in a five star luxury environment</title>
+      <link>https://hhook.github.io/blogs/04_increasing_profit_in_spirits_sales/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/04_increasing_profit_in_spirits_sales/</guid>
+      <description>&lt;p&gt;This is a solution I proposed for a data based problem while working in a successful five star luxury hotel cocktail bar.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Predicting Catalog Demand - with scikit-learn</title>
+      <link>https://hhook.github.io/blogs/03_predicting_catalog_deman_sklearn/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/03_predicting_catalog_deman_sklearn/</guid>
+      <description>&lt;h4 id=&#34;continuation-of-udacity-project&#34;&gt;Continuation of Udacity project&lt;/h4&gt;&#xA;&lt;p&gt;This time we will go through this project with Python using scikit-learn and see how the results differ from eachother from previous iteration.&lt;br&gt;&#xA;We’re tasked with predicting how much money a fictional company in the mail-order catalog business can expect to earn from sending out a catalog to new customers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Predicting Default Risk</title>
+      <link>https://hhook.github.io/blogs/02_predicting_default_risk_ud/</link>
+      <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/02_predicting_default_risk_ud/</guid>
+      <description>&lt;p&gt;In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Predicting Catalog Demand</title>
+      <link>https://hhook.github.io/blogs/01_predicting_catalog_demand_ud/</link>
+      <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/01_predicting_catalog_demand_ud/</guid>
+      <description>&lt;p&gt;In this project, we will analyze a fictional business problem in the mail-order catalog business. We&amp;rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

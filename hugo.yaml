@@ -2,6 +2,7 @@ baseURL: 'https://hhook.github.io/'
 languageCode: 'en-us'
 title: 'Datahook: Helena'
 theme: 'hugo-profile'
+publishDir: docs
 
 outputs:
   home:

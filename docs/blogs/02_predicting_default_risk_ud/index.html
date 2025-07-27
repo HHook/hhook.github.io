@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=favicon_dh.ico type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:url" content="https://hhook.github.io/blogs/02_predicting_default_risk_ud/">
+  <meta property="og:site_name" content="Datahook: Helena">
+  <meta property="og:title" content="Predicting Default Risk">
+  <meta property="og:description" content="In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2020-04-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-04-11T00:00:00+00:00">
+    <meta property="article:tag" content="Alteryx">
+    <meta property="article:tag" content="Classification Models">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Predicting Default Risk">
+  <meta name="twitter:description" content="In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.">
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #343a40;
+        --text-secondary-color: #5a5b5c;
+        --text-link-color: #5a5b5c;
+        --background-color: #eeeee4;
+        --secondary-background-color: #ee8335;
+        --primary-color: #5a5b5c;
+        --secondary-color: #f8f9fa;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #096cd6;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-6/all-6.4.2.js"></script>
+
+
+  
+  
+
+  <title>
+Predicting Default Risk | Datahook: Helena
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+<script>
+    var prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function showHeaderOnScroll() {
+        let profileHeaderElem = document.getElementById("profileHeader");
+        let currentScrollPos = window.pageYOffset;
+        let resetHeaderStyle = false;
+        let showNavBarOnScrollUp =  true ;
+        let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
+        if (showNavBar) {
+            profileHeaderElem.classList.add("showHeaderOnTop");
+        } else {
+            resetHeaderStyle = true;
+        }
+        if(currentScrollPos === 0) {
+            resetHeaderStyle = true;
+        }
+        if(resetHeaderStyle) {
+            profileHeaderElem.classList.remove("showHeaderOnTop");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="/favicon_dh.ico" width="30" height="30"
+                    class="d-inline-block align-top">
+                Data Hook
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl &#43; k to Search...'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Ctrl &#43; k to Search...' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#contact"
+                            aria-label="contact">
+                            Contact
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/blogs" title="Blog posts">
+                            
+                            Blog
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">Predicting Default Risk</h1>
+            <div class="text-center">
+              
+              Apr 11, 2020
+
+              
+              <span id="readingTime">
+                min read
+              </span>
+              
+            </div>
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.</p>
+<h5 id="project-overview">Project overview</h5>
+<p>We have the following information to work with:</p>
+<ol>
+<li>Data on all past applications for a loan</li>
+<li>The list of customers that need to be classified</li>
+</ol>
+<p>Because we are classifying new customers to two groups: creditworthy or not - we need to use a binary model to make this decision. We will build and compare classification models such as Logistic Regression, Decision Tree, Random Forest, and Boosted Model models’ performance against each other. Then decide on the best model to classify new bank customers on whether they can be approved for a loan or not.</p>
+<h2 id="step-1-data-clean-up-and-building-the-training-set">Step 1: Data clean up and building the Training Set</h2>
+<p>I used Field Summary tool to explore given dataset in Alteryx. Based on report below following decisions were made:
+Duration in Current Address has 69% missing data and was removed, while Age Years has missing data as well, but only 2.4% which I decided to impute the missing values with median age because median is not affected by outliers.
+There were two fields with just one value for the whole field: Occupation and Concurrent Credits. Other fields with low-variability where more than 80% of the data was skewed to one side: Guarantors, Number of Dependants and Foreign Worker. All these fields were removed.
+And lastly Telephone field was removed because it is irrelevant to customer’s credit worth.
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-50" >
+  
+    <a class="fancybox" href="/images/Predictors%20removed.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/Predictors%20removed.JPG" >
+  
+    </a>
+  
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-50" >
+  
+    <a class="fancybox" href="/images/Occupation%20uniform.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/Occupation%20uniform.JPG" >
+  
+    </a>
+  
+  
+</div>
+   </p>
+<h2 id="step-2-training-the-classification-models">Step 2: Training the Classification Models</h2>
+<p>For creating estimation and validation samples 70% went for estimation(training sample) and 30% of the entire dataset was saved for validation.
+For each model I have highlighted their significant predictor variables with their p-values.   </p>
+<ol>
+<li>Logistic Regression model
+Logistic regression model with Stepwise kept these predictor variables:
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33 right" >
+  
+    <a class="fancybox" href="/images/LR%20model%20predictor%20p%20values.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/LR%20model%20predictor%20p%20values.JPG" >
+  
+    </a>
+  
+  
+</div>
+</li>
+</ol>
+<ul>
+<li>Account balance</li>
+<li>Payment status</li>
+<li>Purpose</li>
+<li>Credit amount</li>
+<li>Length of current employment</li>
+<li>Instalment percent  <br>
+ </li>
+</ul>
+<ol start="2">
+<li>Decision Tree model
+Decision Tree model found these predictor variables significant:</li>
+</ol>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33 right" >
+  
+    <a class="fancybox" href="/images/DT%20model%20predictors%20VI.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/DT%20model%20predictors%20VI.JPG" >
+  
+    </a>
+  
+  
+</div>
+
+<ul>
+<li>Account Balance</li>
+<li>Value Savings Stocks</li>
+<li>Duration of Credit in Months  <br>
+ <br>
+ </li>
+</ul>
+<ol start="3">
+<li>Forest Model
+The Forest model found these predictor variables most significant:<br>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-25 right" >
+  
+    <a class="fancybox" href="/images/F%20model%20predictors%20VI.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/F%20model%20predictors%20VI.JPG" >
+  
+    </a>
+  
+  
+</div>
+</li>
+</ol>
+<ul>
+<li>Credit Amount</li>
+<li>Age in years</li>
+<li>Duration of credit in months</li>
+<li>Account Balance  <br>
+ <br>
+ </li>
+</ul>
+<ol start="4">
+<li>Boosted Model
+Our Boosted Model works with these predictor variables:<br>
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-25 right" >
+  
+    <a class="fancybox" href="/images/B%20model%20predictors%20VI.JPG" data-fancybox-group="">
+  
+    <img class="fig-img" src="/images/B%20model%20predictors%20VI.JPG" >
+  
+    </a>
+  
+  
+</div>
+</li>
+</ol>
+<ul>
+<li>Credit amount</li>
+<li>Account balance</li>
+<li>Duration of credit in months</li>
+<li>Payment status of previous credit  <br>
+ </li>
+</ul>
+<h2 id="step-3-model-accuracy-comparison-against-validation-set">Step 3: Model accuracy comparison against validation set</h2>
+<p>
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+<div class="figure center fig-75" >
+  
+    <img class="fig-img" src="/images/Comparison%20report.JPG" >
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+Model accuracy comparison report tells us the overall accuracy for Logistic Regression model was 75%, Decision Tree model 75%, Forest model 80% and Boosted model 78%.
+ <br>
+ <br>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure nocaption fig-75 center" >
+  
+    <img class="fig-img" src="/images/Comparison%20report%20confusion%20matrix.JPG" >
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+<p>The Regression and the Decision Tree models predicted a lot of creditworthy applicants as non-creditworthy. Those two models are predicting the creditworthy applicants with more accuracy compared to the non-creditworthy. We can see that the Positive Predictive value <em>(PPV, also called Precision)</em> is higher than the Negative Predictive Value <em>(NPV)</em> which suggests that the models are biased towards creditworthy applicants which is understandable since our data set is biased - having a lot more creditworthy than non-creditworthy applicants.</p>
+<p>Decision tree and regression model both: PPV 79%, NPV 60%.<br>
+Boosted model: PPV 77%, NPV 80%.<br>
+Forest model: PPV 80%, NPV 83%.</p>
+<p>The PPV and NPV are almost equal in Boosted and Forest models - suggesting lack of bias.</p>
+<h2 id="step-4-choosing-the-best-model">Step 4: Choosing the best model</h2>
+<p>I chose to use our Forest model to predict loan worthy customers taking into account its highest overall accuracy compared to other models and its high F1 score, which looks for the bias in prediciting &ldquo;Creditworthy&rdquo; or &ldquo;Non-Creditworthy&rdquo; and calculates a single score: the higher the score, the better. Our Forest model’s overall accuracy is 80%, F1 87%.</p>
+<p>PPV = True Positives / ( True Positives + False Positives ) = 101/ (101 + 26) = 0.8<br>
+NPV = True Negatives / ( True Negatives + False Negatives) = 19 / ( 19 + 4) = 0.83<br>
+ACC = (TP + TN) / (P + N) = (101 + 19) / (127 + 23) = 0.8<br>
+F1 = 2TP / (2TP + FP + FN) = 2x101/ (2x101 + 26 + 4) = 0.87</p>
+<p>
+
+
+<div class="figure nocaption fig-33 right" >
+  
+    <img class="fig-img" src="/images/Comparison%20report%20ROC.JPG" >
+  
+  
+</div>
+
+In the ROC curve we see our Forest model with orange line being the highest in graph of all models – meaning that we are getting a higher rate of true positive rates vs. false positives rates. We are looking for a high rate of true positive vs. true negative rates because we do not want to extend loans to people who are not creditworthy. Classifiers that get curves closer to the top-left corner indicate a better performance.</p>
+<p>Our Forest model’s AUC is 0.73 it means there is 73% chance that model will be able to distinguish between positive class and negative class.</p>
+<h3 id="the-result">The result</h3>
+<p>Out of 500 new applications there are 411 customers who are creditworthy meaning they qualify for getting a loan as per our prediction model.<br>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure nocaption" >
+  
+    <img class="fig-img" src="/images/Scoring%20creditworthy%20customers.JPG" >
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+<p> <br>
+ </p>
+<h5 id="materials-used">Materials used:</h5>
+<p><em>“Understanding AUC - ROC Curve”</em><br>
+<a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5</a></p>
+<p><em>“Simple guide to confusion matrix terminology”</em><br>
+<a href="https://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/">https://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/</a></p>
+<p><em>“Confusion matrix online calculator”</em><br>
+<a href="http://onlineconfusionmatrix.com/">http://onlineconfusionmatrix.com/</a></p>
+<p> <br>
+Alteryx workflows:<br>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure  fig-75 center" >
+  
+    <img class="fig-img" src="/images/Comparison%20workflow.JPG"  alt="Model comparison workflow">
+  
+   
+    <span class="caption">Model comparison workflow</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+
+<div class="figure  fig-75 center" >
+  
+    <img class="fig-img" src="/images/Scoring%20forest%20model.JPG"  alt="Scoring data with Forest model  ">
+  
+   
+    <span class="caption">Scoring data with Forest model  </span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#step-1-data-clean-up-and-building-the-training-set">Step 1: Data clean up and building the Training Set</a></li>
+    <li><a href="#step-2-training-the-classification-models">Step 2: Training the Classification Models</a></li>
+    <li><a href="#step-3-model-accuracy-comparison-against-validation-set">Step 3: Model accuracy comparison against validation set</a></li>
+    <li><a href="#step-4-choosing-the-best-model">Step 4: Choosing the best model</a>
+      <ul>
+        <li><a href="#the-result">The result</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+          <aside class="tags">
+            <h5>Tags</h5>
+            <ul class="tags-ul list-unstyled list-inline">
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/alteryx"
+                target="_blank"
+              >alteryx</a></li>
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/classification-models"
+                target="_blank"
+              >classification models</a></li>
+              
+            </ul>
+          </aside>
+          
+
+          
+          <aside class="social">
+            <h5>Social</h5>
+            <div class="social-content">
+              <ul class="list-inline">
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fhhook.github.io%2fblogs%2f02_predicting_default_risk_ud%2f">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://twitter.com/share?text=Predicting%20Default%20Risk&url=https%3a%2f%2fhhook.github.io%2fblogs%2f02_predicting_default_risk_ud%2f">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://api.whatsapp.com/send?text=Predicting%20Default%20Risk: https%3a%2f%2fhhook.github.io%2fblogs%2f02_predicting_default_risk_ud%2f">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href='mailto:?subject=Predicting%20Default%20Risk&amp;body=Check%20out%20this%20site https%3a%2f%2fhhook.github.io%2fblogs%2f02_predicting_default_risk_ud%2f'>
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+<div class="progress">
+  <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<Script src="/js/scrollProgressBar.js"></script>
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar =  true ;
+  if(stickyNavBar) {
+    let headerElem = document.getElementById("profileHeader");
+    let headerHeight = headerElem.offsetHeight + 15;
+    stickySideBarElem.style.top = headerHeight + "px";
+  } else {
+    stickySideBarElem.style.top = "50px";
+  }
+</script>
+
+
+<script src="/js/readingTime.js"></script>
+
+
+
+  </div><footer>
+    
+    
+
+    
+<section id="contact" class="py-5">
+    <div class="container">
+        <h3 class="text-center">Get in Touch</h3>
+        <div class="px-0 px-md-5 px-lg-5">
+            <div class="row justify-content-center px-md-5">
+                <div class="col-md-8 py-3">
+                    <div class="text-center">
+                        My inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+                    </div>
+                    
+                    <div class="text-center pt-3">
+                        <a 
+                            href='
+                                    mailto:helena@datahook.co.uk
+                                  '
+                            target="_blank"
+                            class="btn"
+                        >
+                            Mail me
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact-form-status"></div>
+</section>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+<div class="text-center pt-2">
+    
+
+    
+
+    
+
+    
+
+    
+</div><div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="https://hhook.github.io/" title="Datahook: Helena">
+                        <img alt="Footer logo" src="/favicon_dh.ico"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2025  All rights reserved
+            <div class="text-secondary">
+                Made with
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and
+                <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
+                    title="Designed and developed by gurusabarish">
+                    Hugo Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (document.body.className.includes("dark")) {
+        document.body.classList.remove('dark');
+        localStorage.setItem("pref-theme", 'light');
+    }
+</script>
+
+
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>
