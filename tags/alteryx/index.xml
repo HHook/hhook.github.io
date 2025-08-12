@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Alteryx on Datahook: Helena</title>
-    <link>https://hhook.github.io/tags/alteryx/</link>
+    <link>http://localhost:1313/tags/alteryx/</link>
     <description>Recent content in Alteryx on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 11 Apr 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://hhook.github.io/tags/alteryx/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/alteryx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Predicting Default Risk</title>
-      <link>https://hhook.github.io/blogs/02_predicting_default_risk_ud/</link>
+      <link>http://localhost:1313/blogs/02_predicting_default_risk_ud/</link>
       <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/blogs/02_predicting_default_risk_ud/</guid>
+      <guid>http://localhost:1313/blogs/02_predicting_default_risk_ud/</guid>
       <description>&lt;p&gt;In this project, we need to decide if a new bank customer is approved for loan or not using a predictive model.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Predicting Catalog Demand</title>
-      <link>https://hhook.github.io/blogs/01_predicting_catalog_demand_ud/</link>
+      <link>http://localhost:1313/blogs/01_predicting_catalog_demand_ud/</link>
       <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/blogs/01_predicting_catalog_demand_ud/</guid>
+      <guid>http://localhost:1313/blogs/01_predicting_catalog_demand_ud/</guid>
       <description>&lt;p&gt;In this project, we will analyze a fictional business problem in the mail-order catalog business. We&amp;rsquo;re tasked with predicting how much money your company can expect to earn from sending out a catalog to new customers.&lt;/p&gt;</description>
     </item>
   </channel>

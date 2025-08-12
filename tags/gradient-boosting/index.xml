@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gradient Boosting on Datahook: Helena</title>
-    <link>https://hhook.github.io/tags/gradient-boosting/</link>
+    <link>http://localhost:1313/tags/gradient-boosting/</link>
     <description>Recent content in Gradient Boosting on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://hhook.github.io/tags/gradient-boosting/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/gradient-boosting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ANZ Virtual Internship</title>
-      <link>https://hhook.github.io/blogs/05_anz_virtual_experience/</link>
+      <link>http://localhost:1313/blogs/05_anz_virtual_experience/</link>
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/blogs/05_anz_virtual_experience/</guid>
+      <guid>http://localhost:1313/blogs/05_anz_virtual_experience/</guid>
       <description>&lt;p&gt;This is a post about a virtual work experience program I completed with &lt;a href=&#34;https://www.theforage.com/virtual-internships/prototype/ZLJCsrpkHo9pZBJNY/ANZ-Virtual-Internship&#34;&gt;Forage&lt;/a&gt; in their collaboration with ANZ, an Australian multinational banking and financial services company.&lt;/p&gt;</description>
     </item>
   </channel>

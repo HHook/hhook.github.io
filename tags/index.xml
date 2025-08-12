@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Datahook: Helena</title>
-    <link>https://hhook.github.io/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://hhook.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Business</title>
-      <link>https://hhook.github.io/tags/business/</link>
+      <link>http://localhost:1313/tags/business/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/business/</guid>
+      <guid>http://localhost:1313/tags/business/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Analysis</title>
-      <link>https://hhook.github.io/tags/data-analysis/</link>
+      <link>http://localhost:1313/tags/data-analysis/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/data-analysis/</guid>
+      <guid>http://localhost:1313/tags/data-analysis/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>https://hhook.github.io/tags/python/</link>
+      <link>http://localhost:1313/tags/python/</link>
       <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/python/</guid>
+      <guid>http://localhost:1313/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Gradient Boosting</title>
-      <link>https://hhook.github.io/tags/gradient-boosting/</link>
+      <link>http://localhost:1313/tags/gradient-boosting/</link>
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/gradient-boosting/</guid>
+      <guid>http://localhost:1313/tags/gradient-boosting/</guid>
       <description></description>
     </item>
     <item>
       <title>Linear Regression</title>
-      <link>https://hhook.github.io/tags/linear-regression/</link>
+      <link>http://localhost:1313/tags/linear-regression/</link>
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/linear-regression/</guid>
+      <guid>http://localhost:1313/tags/linear-regression/</guid>
       <description></description>
     </item>
     <item>
       <title>Scikit-Learn</title>
-      <link>https://hhook.github.io/tags/scikit-learn/</link>
+      <link>http://localhost:1313/tags/scikit-learn/</link>
       <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/scikit-learn/</guid>
+      <guid>http://localhost:1313/tags/scikit-learn/</guid>
       <description></description>
     </item>
     <item>
       <title>Profit</title>
-      <link>https://hhook.github.io/tags/profit/</link>
+      <link>http://localhost:1313/tags/profit/</link>
       <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/profit/</guid>
+      <guid>http://localhost:1313/tags/profit/</guid>
       <description></description>
     </item>
     <item>
       <title>Alteryx</title>
-      <link>https://hhook.github.io/tags/alteryx/</link>
+      <link>http://localhost:1313/tags/alteryx/</link>
       <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/alteryx/</guid>
+      <guid>http://localhost:1313/tags/alteryx/</guid>
       <description></description>
     </item>
     <item>
       <title>Classification Models</title>
-      <link>https://hhook.github.io/tags/classification-models/</link>
+      <link>http://localhost:1313/tags/classification-models/</link>
       <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>https://hhook.github.io/tags/classification-models/</guid>
+      <guid>http://localhost:1313/tags/classification-models/</guid>
       <description></description>
     </item>
   </channel>
