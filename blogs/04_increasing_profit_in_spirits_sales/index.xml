@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Increasing profit in a five star luxury environment on Datahook: Helena</title>
-    <link>https://hhook.github.io/blogs/04_increasing_profit_in_spirits_sales/</link>
+    <link>http://localhost:1313/blogs/04_increasing_profit_in_spirits_sales/</link>
     <description>Recent content in Increasing profit in a five star luxury environment on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://hhook.github.io/blogs/04_increasing_profit_in_spirits_sales/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blogs/04_increasing_profit_in_spirits_sales/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
