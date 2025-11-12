@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Analysis on Datahook: Helena</title>
-    <link>http://localhost:1313/tags/data-analysis/</link>
+    <link>https://hhook.github.io/tags/data-analysis/</link>
     <description>Recent content in Data Analysis on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/data-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hhook.github.io/tags/data-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Quantium Virtual Internship</title>
-      <link>http://localhost:1313/blogs/06_quantium_virtual_experience/</link>
+      <link>https://hhook.github.io/blogs/06_quantium_virtual_experience/</link>
       <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blogs/06_quantium_virtual_experience/</guid>
+      <guid>https://hhook.github.io/blogs/06_quantium_virtual_experience/</guid>
       <description>&lt;p&gt;Here we will go through a supermarket transaction data to understand better our customer segments and their purchasing behaviors. The data and task is from a data analytics virtual work experience program I completed with &lt;a href=&#34;https://www.theforage.com/virtual-internships/prototype/NkaC7knWtjSbi6aYv/Data-Analytics?ref=kh22opepLRepWYSK3&#34;&gt;Forage&lt;/a&gt; and Quantium, a leading data science and AI Firm with a track record of innovation in data science.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Increasing profit in a five star luxury environment</title>
-      <link>http://localhost:1313/blogs/04_increasing_profit_in_spirits_sales/</link>
+      <link>https://hhook.github.io/blogs/04_increasing_profit_in_spirits_sales/</link>
       <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blogs/04_increasing_profit_in_spirits_sales/</guid>
+      <guid>https://hhook.github.io/blogs/04_increasing_profit_in_spirits_sales/</guid>
       <description>&lt;p&gt;This is a solution I proposed for a data based problem while working in a successful five star luxury hotel cocktail bar.&lt;/p&gt;</description>
     </item>
   </channel>
