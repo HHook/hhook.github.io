@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=favicon_dh.ico type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:url" content="https://hhook.github.io/blogs/08_ab-test-calculator/">
+  <meta property="og:site_name" content="Datahook: Helena">
+  <meta property="og:title" content="From Jupyter Notebook to AWS: Deploying an A/B Test Duration Calculator">
+  <meta property="og:description" content="I built an A/B test duration calculator in a Jupyter notebook. It worked great locally: plug in your baseline conversion rate, expected lift, and daily traffic, and it would tell you exactly how many days to run your test. The problem was it lived entirely on my machine, which meant it was useful to exactly one person: me.
+So I decided to turn it into a real, deployed web tool. What followed was a proper end-to-end ML deployment project: FastAPI, Docker, AWS ECS Fargate, a load balancer, HTTPS, and an automated CI/CD pipeline. This post walks through what I built, the decisions I made, and the things that went wrong along the way.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2026-02-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-25T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="FastAPI">
+    <meta property="article:tag" content="Apps">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="From Jupyter Notebook to AWS: Deploying an A/B Test Duration Calculator">
+  <meta name="twitter:description" content="I built an A/B test duration calculator in a Jupyter notebook. It worked great locally: plug in your baseline conversion rate, expected lift, and daily traffic, and it would tell you exactly how many days to run your test. The problem was it lived entirely on my machine, which meant it was useful to exactly one person: me.
+So I decided to turn it into a real, deployed web tool. What followed was a proper end-to-end ML deployment project: FastAPI, Docker, AWS ECS Fargate, a load balancer, HTTPS, and an automated CI/CD pipeline. This post walks through what I built, the decisions I made, and the things that went wrong along the way.">
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #343a40;
+        --text-secondary-color: #5a5b5c;
+        --text-link-color: #5a5b5c;
+        --background-color: #eeeee4;
+        --secondary-background-color: #ee8335;
+        --primary-color: #5a5b5c;
+        --secondary-color: #f8f9fa;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #096cd6;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-6/all-6.4.2.js"></script>
+
+
+  
+  
+
+  <title>
+From Jupyter Notebook to AWS: Deploying an A/B Test Duration Calculator | Datahook: Helena
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+<script>
+    var prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function showHeaderOnScroll() {
+        let profileHeaderElem = document.getElementById("profileHeader");
+        let currentScrollPos = window.pageYOffset;
+        let resetHeaderStyle = false;
+        let showNavBarOnScrollUp =  true ;
+        let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
+        if (showNavBar) {
+            profileHeaderElem.classList.add("showHeaderOnTop");
+        } else {
+            resetHeaderStyle = true;
+        }
+        if(currentScrollPos === 0) {
+            resetHeaderStyle = true;
+        }
+        if(resetHeaderStyle) {
+            profileHeaderElem.classList.remove("showHeaderOnTop");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="/favicon_dh.ico" width="30" height="30"
+                    class="d-inline-block align-top">
+                Data Hook
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl &#43; k to Search...'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Ctrl &#43; k to Search...' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#contact"
+                            aria-label="contact">
+                            Contact
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/cv/helena_hook_cv.pdf" title="Download CV">
+                            
+                            CV
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/blogs" title="Blog posts">
+                            
+                            Blog
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/ab-calculator/" title="A/B Test Duration Calculator">
+                            A/B test calculator
+                        </a>
+                    </li>
+
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">From Jupyter Notebook to AWS: Deploying an A/B Test Duration Calculator</h1>
+            <div class="text-center">
+              
+                Helena
+                <small>|</small>
+              
+              Feb 25, 2026
+
+              
+              <span id="readingTime">
+                min read
+              </span>
+              
+            </div>
+          </div>
+          
+          <div class="featured-image">
+            <img class="img-fluid mx-auto d-block" src="/images/ab_calculator_post_cover.png" alt="From Jupyter Notebook to AWS: Deploying an A/B Test Duration Calculator">
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>I built an A/B test duration calculator in a Jupyter notebook. It worked great locally: plug in your baseline conversion rate, expected lift, and daily traffic, and it would tell you exactly how many days to run your test. The problem was it lived entirely on my machine, which meant it was useful to exactly one person: me.</p>
+<p>So I decided to turn it into a real, deployed web tool. What followed was a proper end-to-end ML deployment project: FastAPI, Docker, AWS ECS Fargate, a load balancer, HTTPS, and an automated CI/CD pipeline. This post walks through what I built, the decisions I made, and the things that went wrong along the way.</p>
+<p>If you just want to see the thing go to: <a href="https://datahook.co.uk/ab-calculator">datahook.co.uk/ab-calculator</a></p>
+<hr>
+<h2 id="what-the-calculator-does">What the calculator does</h2>
+<p>The calculator uses a two-proportion z-test to determine how long an A/B test needs to run to detect a given effect at a specified power and significance level. You give it:</p>
+<ul>
+<li>Your baseline conversion rate</li>
+<li>The minimum relative lift you want to detect</li>
+<li>Your daily traffic, allocation, and split ratio</li>
+<li>Target statistical power and significance level</li>
+</ul>
+<p>It returns the required sample sizes for control and treatment, and translates that into a number of days based on your traffic. It also renders two Plotly charts: a sensitivity curve showing days needed across a range of effect sizes, and a power heatmap showing how power varies with sample size and lift.</p>
+<hr>
+<h2 id="the-architecture">The architecture</h2>
+<p>The final setup looks like this:</p>
+<pre tabindex="0"><code>Browser (Hugo site on datahook.co.uk)
+    ↓ HTTPS
+AWS Application Load Balancer (api.datahook.co.uk)
+    ↓ HTTP
+AWS ECS Fargate (FastAPI container)
+    ↓
+AWS ECR (Docker image registry)
+
+GitHub → GitHub Actions → ECR → ECS (on every push)
+</code></pre><p>Each layer has a specific job. The Hugo site is just static HTML and JavaScript: it calls the API and renders the results. The load balancer provides a stable HTTPS endpoint. ECS Fargate runs the container without me having to manage servers. ECR stores the Docker images. And GitHub Actions ties it all together so deploying new code is just a <code>git push</code>.</p>
+<hr>
+<h2 id="step-1-getting-the-notebook-logic-out-of-the-notebook">Step 1: Getting the notebook logic out of the notebook</h2>
+<p>The first real piece of work was extracting the calculator logic into a clean Python module. Notebooks are great for exploration but terrible for deployment: global variables, cells that depend on each other&rsquo;s state, and no clear inputs or outputs.</p>
+<p>The key was identifying a single entry point function that takes all the inputs and returns all the outputs. Everything else got stripped away: the print statements, the chart code, the markdown explanations. What remained was two core functions and a <code>run_calculation()</code> wrapper that became the bridge between the notebook and the API.</p>
+<p>This step is worth taking seriously. A clean <code>calculator.py</code> with well-defined inputs and outputs makes every subsequent step easier.</p>
+<hr>
+<h2 id="step-2-wrapping-it-in-fastapi">Step 2: Wrapping it in FastAPI</h2>
+<p>FastAPI was the natural choice here. It&rsquo;s fast, it generates interactive API documentation automatically, and Pydantic handles input validation out of the box. The API ended up with two endpoints:</p>
+<ul>
+<li><code>POST /calculate</code>: takes the calculator inputs, returns results as JSON</li>
+<li><code>GET /health</code>: returns <code>{&quot;status&quot;: &quot;ok&quot;}</code>, used by AWS for health checks</li>
+</ul>
+<p>The Pydantic input model enforces constraints automatically: baseline conversion rate must be between 0 and 1, daily traffic must be positive, and so on. This means the API fails fast with a clear error message rather than returning nonsense results.</p>
+<hr>
+<h2 id="step-3-dockerising">Step 3: Dockerising</h2>
+<p>The Dockerfile uses a two-stage build. The first stage installs all the Python dependencies. The second stage copies only the installed packages across, leaving behind pip caches and build tools. This keeps the final image lean.</p>
+<p>Two things I learned here that I&rsquo;ll always do going forward:</p>
+<p><strong>Pin your dependency versions.</strong> <code>fastapi==0.115.5</code> instead of just <code>fastapi</code>. Unpinned dependencies mean your build might work today and break in three months when a new version ships.</p>
+<p><strong>Use a non-root user.</strong> Adding a dedicated <code>appuser</code> and switching to it before the CMD is a small change that reflects real production practice.</p>
+<hr>
+<h2 id="step-4-the-aws-deployment-journey">Step 4: The AWS deployment journey</h2>
+<p>This is where things got interesting.</p>
+<p>My first attempt was AWS App Runner, which promises to be the simplest way to run a container on AWS. After several hours of health check failures, stuck deployments, and <code>OPERATION_IN_PROGRESS</code> states I couldn&rsquo;t cancel, I gave up on it. App Runner abstracts away too much: when something goes wrong, there&rsquo;s very little visibility into why.</p>
+<p>I switched to ECS Fargate, which exposes all the underlying components explicitly. More setup, but much easier to debug. The components you create are:</p>
+<ul>
+<li><strong>ECS Cluster</strong>: a logical grouping for your services</li>
+<li><strong>Task Definition</strong>: the blueprint: which image, how much CPU and memory, which port</li>
+<li><strong>ECS Service</strong>: keeps your task running and restarts it if it crashes</li>
+<li><strong>VPC, subnets, security groups</strong>: the networking layer that controls what can talk to what</li>
+</ul>
+<p>There was also an AWS account quota issue: new accounts have a Fargate vCPU limit of zero, which means no tasks can be placed at all. This required raising a support ticket. Worth knowing before you start.</p>
+<hr>
+<h2 id="step-5-the-load-balancer-and-https">Step 5: The load balancer and HTTPS</h2>
+<p>ECS Fargate tasks get a new public IP every time they restart. Without a load balancer, that means updating your frontend every time your container redeploys: obviously not sustainable.</p>
+<p>An Application Load Balancer sits in front of the ECS service and provides a stable DNS name. ECS automatically registers new task IPs with the load balancer&rsquo;s target group, so the DNS name always resolves correctly regardless of what&rsquo;s happening behind it.</p>
+<p>HTTPS came via AWS Certificate Manager, which provides free SSL certificates for domains you own. The validation process involves adding a CNAME record to your DNS: GoDaddy warned it could take 48 hours, but it resolved in a few hours.</p>
+<p>The final result is a stable <code>https://api.datahook.co.uk</code> endpoint that the Hugo frontend can call safely from an HTTPS page without triggering mixed content errors.</p>
+<hr>
+<h2 id="step-6-cicd-with-github-actions">Step 6: CI/CD with GitHub Actions</h2>
+<p>The final piece was automating the deployment so that pushing code to GitHub triggers a full rebuild and redeploy automatically.</p>
+<p>The workflow does three things:</p>
+<ol>
+<li>Builds the Docker image</li>
+<li>Tags it with the git commit SHA and pushes it to ECR</li>
+<li>Updates the ECS task definition with the new image tag and forces a redeployment</li>
+</ol>
+<p>A few things in the workflow are worth explaining. The <code>paths</code> filter means the workflow only runs when files in <code>app/</code>, <code>Dockerfile</code>, or <code>requirements.txt</code> change. Making changes to the Hugo page won&rsquo;t trigger a redeployment.</p>
+<p>Tagging images with the commit SHA rather than just <code>latest</code> means every deployed version is traceable and rollbacks are straightforward.</p>
+<hr>
+<h2 id="what-id-do-differently">What I&rsquo;d do differently</h2>
+<p><strong>Start with ECS, skip App Runner.</strong> App Runner&rsquo;s simplicity is a trap when things go wrong. ECS gives you more to configure upfront but much better observability.</p>
+<p><strong>Check account quotas before starting.</strong> The Fargate vCPU quota issue cost hours. A quick check of Service Quotas at the start would have flagged it immediately.</p>
+<hr>
+<h2 id="the-result">The result</h2>
+<p>The calculator is live at <a href="https://datahook.co.uk/ab-calculator">datahook.co.uk/ab-calculator</a>. Any change to the API code is automatically built, pushed to ECR, and deployed to ECS with a single <code>git push</code>. The Hugo frontend calls the live API over HTTPS and renders the results and charts in the browser.</p>
+<p>The full stack (FastAPI, Docker, ECS Fargate, ALB, ACM, GitHub Actions) mirrors how real ML models get deployed in production environments. <strong>That was the point: build something small enough to actually finish, but use the real tools.</strong></p>
+<p><em><strong>P.S. Yes, I know Streamlit exist. I regret nothing.</strong></em></p>
+
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-the-calculator-does">What the calculator does</a></li>
+    <li><a href="#the-architecture">The architecture</a></li>
+    <li><a href="#step-1-getting-the-notebook-logic-out-of-the-notebook">Step 1: Getting the notebook logic out of the notebook</a></li>
+    <li><a href="#step-2-wrapping-it-in-fastapi">Step 2: Wrapping it in FastAPI</a></li>
+    <li><a href="#step-3-dockerising">Step 3: Dockerising</a></li>
+    <li><a href="#step-4-the-aws-deployment-journey">Step 4: The AWS deployment journey</a></li>
+    <li><a href="#step-5-the-load-balancer-and-https">Step 5: The load balancer and HTTPS</a></li>
+    <li><a href="#step-6-cicd-with-github-actions">Step 6: CI/CD with GitHub Actions</a></li>
+    <li><a href="#what-id-do-differently">What I&rsquo;d do differently</a></li>
+    <li><a href="#the-result">The result</a></li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+          <aside class="tags">
+            <h5>Tags</h5>
+            <ul class="tags-ul list-unstyled list-inline">
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/python"
+                target="_blank"
+              >python</a></li>
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/aws"
+                target="_blank"
+              >AWS</a></li>
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/docker"
+                target="_blank"
+              >docker</a></li>
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/fastapi"
+                target="_blank"
+              >FastAPI</a></li>
+              
+              <li class="list-inline-item"><a href="https://hhook.github.io/tags/apps"
+                target="_blank"
+              >apps</a></li>
+              
+            </ul>
+          </aside>
+          
+
+          
+          <aside class="social">
+            <h5>Social</h5>
+            <div class="social-content">
+              <ul class="list-inline">
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fhhook.github.io%2fblogs%2f08_ab-test-calculator%2f">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://twitter.com/share?text=From%20Jupyter%20Notebook%20to%20AWS%3a%20Deploying%20an%20A%2fB%20Test%20Duration%20Calculator&url=https%3a%2f%2fhhook.github.io%2fblogs%2f08_ab-test-calculator%2f">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://api.whatsapp.com/send?text=From%20Jupyter%20Notebook%20to%20AWS%3a%20Deploying%20an%20A%2fB%20Test%20Duration%20Calculator: https%3a%2f%2fhhook.github.io%2fblogs%2f08_ab-test-calculator%2f">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href='mailto:?subject=From%20Jupyter%20Notebook%20to%20AWS%3a%20Deploying%20an%20A%2fB%20Test%20Duration%20Calculator&amp;body=Check%20out%20this%20site https%3a%2f%2fhhook.github.io%2fblogs%2f08_ab-test-calculator%2f'>
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+<div class="progress">
+  <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<Script src="/js/scrollProgressBar.js"></script>
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar =  true ;
+  if(stickyNavBar) {
+    let headerElem = document.getElementById("profileHeader");
+    let headerHeight = headerElem.offsetHeight + 15;
+    stickySideBarElem.style.top = headerHeight + "px";
+  } else {
+    stickySideBarElem.style.top = "50px";
+  }
+</script>
+
+
+<script src="/js/readingTime.js"></script>
+
+
+
+  </div><footer>
+    
+    
+
+    
+<section id="contact" class="py-5">
+    <div class="container">
+        <h3 class="text-center">Get in Touch</h3>
+        <div class="px-0 px-md-5 px-lg-5">
+            <div class="row justify-content-center px-md-5">
+                <div class="col-md-8 py-3">
+                    <div class="text-center">
+                        My inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+                    </div>
+                    
+                    <div class="text-center pt-3">
+                        <a 
+                            href='
+                                    mailto:helena@datahook.co.uk
+                                  '
+                            target="_blank"
+                            class="btn"
+                        >
+                            Mail me
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact-form-status"></div>
+</section>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+<div class="text-center pt-2">
+    
+
+    
+
+    
+
+    
+
+    
+</div><div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="https://hhook.github.io/" title="Datahook: Helena">
+                        <img alt="Footer logo" src="/favicon_dh.ico"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2026  All rights reserved
+            <div class="text-secondary">
+                Made with
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and
+                <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
+                    title="Designed and developed by gurusabarish">
+                    Hugo Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (document.body.className.includes("dark")) {
+        document.body.classList.remove('dark');
+        localStorage.setItem("pref-theme", 'light');
+    }
+</script>
+
+
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>

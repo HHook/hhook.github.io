@@ -3,30 +3,45 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hhook.github.io/tags/apps/</loc>
-    <lastmod>2025-07-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/tags/aws/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hhook.github.io/blogs/</loc>
-    <lastmod>2025-07-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://hhook.github.io/blogs/07_helena_chatbot/</loc>
-    <lastmod>2025-07-27T00:00:00+00:00</lastmod>
+    <loc>https://hhook.github.io/categories/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hhook.github.io/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/tags/docker/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/tags/fastapi/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/blogs/08_ab-test-calculator/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/categories/projects/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/tags/python/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/tags/</loc>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hhook.github.io/blogs/07_helena_chatbot/</loc>
     <lastmod>2025-07-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hhook.github.io/tags/llms/</loc>
     <lastmod>2025-07-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://hhook.github.io/tags/python/</loc>
-    <lastmod>2025-07-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hhook.github.io/tags/</loc>
-    <lastmod>2025-07-27T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://hhook.github.io/tags/business/</loc>
-    <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://hhook.github.io/categories/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hhook.github.io/tags/data-analysis/</loc>
