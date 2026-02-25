@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A/B Test Duration Calculator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1a18;
+      --ink-soft:  #5a5a52;
+      --ink-faint: #9a9a8e;
+      --paper:     #fafaf7;
+      --cream:     #f2f1eb;
+      --rule:      #e4e3da;
+      --accent:    #c84b2f;
+      --accent-2:  #2a6e4f;
+      --accent-3:  #2c4a7c;
+      --highlight: #f5e6c8;
+      --serif: 'Fraunces', Georgia, serif;
+      --mono:  'DM Mono', monospace;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+     
+    .page-header {
+      border-bottom: 2px solid var(--ink);
+      padding: 2.5rem 3rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 1rem;
+      background: var(--paper);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .page-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      line-height: 1.6;
+    }
+
+    .header-logo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      color: var(--ink-soft);
+    }
+
+    .header-logo {
+      height: 22px;
+      width: auto;
+      display: block;
+    }
+
+    .header-logo-text {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .header-link {
+      color: var(--ink-faint);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .header-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+     
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - 110px);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+     
+    .sidebar {
+      border-right: 1px solid var(--rule);
+      padding: 2rem;
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .field {
+      margin-bottom: 1.25rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--ink-soft);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.04em;
+    }
+
+    .field-hint {
+      font-size: 0.64rem;
+      color: var(--ink-faint);
+      line-height: 1.5;
+      margin-top: 0.3rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .field-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--rule);
+      background: white;
+      transition: border-color 0.15s;
+    }
+
+    .field-input-wrap:focus-within {
+      border-color: var(--ink);
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--ink);
+      background: transparent;
+      padding: 0.45rem 0.6rem;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .field-unit {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      padding: 0 0.6rem 0 0;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .run-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.2s, transform 0.1s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .run-btn:hover { background: var(--accent); }
+    .run-btn:active { transform: scale(0.98); }
+
+    .run-btn.loading::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: -100%;
+      width: 100%; height: 2px;
+      background: var(--highlight);
+      animation: progress 1.5s infinite;
+    }
+
+    @keyframes progress {
+      to { left: 100%; }
+    }
+
+     
+    .main {
+      padding: 2rem 2.5rem;
+      overflow-y: auto;
+    }
+
+     
+    .result-banner {
+      display: none;
+      border: 2px solid var(--ink);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      background: white;
+      animation: fadeSlide 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--accent);
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-banner.visible { display: block; }
+
+    .result-headline {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-headline strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .result-sub {
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+    }
+
+     
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-bottom: 2rem;
+    }
+
+    .stat-cell {
+      background: white;
+      padding: 1.25rem 1.5rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .stat-cell.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stat-cell:nth-child(1) { transition-delay: 0.05s; }
+    .stat-cell:nth-child(2) { transition-delay: 0.1s; }
+    .stat-cell:nth-child(3) { transition-delay: 0.15s; }
+    .stat-cell:nth-child(4) { transition-delay: 0.2s; }
+    .stat-cell:nth-child(5) { transition-delay: 0.25s; }
+    .stat-cell:nth-child(6) { transition-delay: 0.3s; }
+
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-value {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-value.accent { color: var(--accent); }
+    .stat-value.accent-2 { color: var(--accent-2); }
+
+    .stat-unit {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      margin-top: 0.25rem;
+    }
+
+     
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-card {
+      border: 1px solid var(--rule);
+      background: white;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+
+    .chart-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chart-card:nth-child(1) { transition-delay: 0.1s; }
+    .chart-card:nth-child(2) { transition-delay: 0.2s; }
+
+    .chart-header {
+      padding: 1rem 1.25rem 0.5rem;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .chart-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .chart-tag {
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+
+    .chart-body {
+      padding: 0.5rem;
+    }
+
+     
+    .empty-state {
+      padding: 1rem 0;
+    }
+
+    .description-block {
+      max-width: 640px;
+    }
+
+    .desc-intro {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin-bottom: 0.75rem;
+    }
+
+    .desc-intro strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .desc-list {
+      list-style: none;
+      margin: 0 0 1rem 0;
+      padding: 0;
+    }
+
+    .desc-list li {
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      padding: 0.3rem 0 0.3rem 1.25rem;
+      border-left: 2px solid var(--rule);
+      margin-bottom: 0.35rem;
+    }
+
+    .desc-list li strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .desc-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 1.5rem 0;
+    }
+
+    .desc-heading {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+     
+    .error-msg {
+      display: none;
+      background: #fdf0ee;
+      border: 1px solid #e8a99e;
+      color: var(--accent);
+      padding: 0.75rem 1rem;
+      font-size: 0.72rem;
+      margin-top: 1rem;
+      border-radius: 2px;
+    }
+    .error-msg.visible { display: block; }
+
+     
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; height: auto; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-header { padding: 1.5rem; }
+      .main { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <div>
+    <div class="header-label">Statistical Tool · Power Analysis</div>
+    <h1 class="page-title">A/B Test <em>Duration</em><br>Calculator</h1>
+  </div>
+  <div class="header-meta">
+    Two-proportion z-test<br>
+    Powered by FastAPI + AWS<br>
+    <a href="https://www.linkedin.com/in/helena-hook/" target="_blank" rel="noopener" class="header-link">Created by Helena Hook</a>
+    <div>
+      <a href="https://datahook.co.uk" target="_blank" rel="noopener" class="header-logo-link">
+        <img src="/favicon_dh.ico" alt="Data Hook" class="header-logo">
+        <span class="header-logo-text">Data Hook</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Conversion</div>
+
+      <div class="field">
+        <label for="baseline">Baseline conversion rate (p₁)</label>
+        <div class="field-input-wrap">
+          <input type="number" id="baseline" min="0.1" max="99" step="0.1" value="20" placeholder="20">
+          <span class="field-unit">%</span>
+        </div>
+        <p class="field-hint">The current conversion rate.</p>
+      </div>
+
+      <div class="field">
+        <label for="lift">Expected relative lift</label>
+        <div class="field-input-wrap">
+          <input type="number" id="lift" min="0.1" max="200" step="0.1" value="10" placeholder="10">
+          <span class="field-unit">%</span>
+        </div>
+        <p class="field-hint">The smallest relative % change you expect to detect in the treatment group.</p>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Traffic</div>
+
+      <div class="field">
+        <label for="traffic">Daily visitors</label>
+        <div class="field-input-wrap">
+          <input type="number" id="traffic" min="1" step="100" value="1000" placeholder="1000">
+          <span class="field-unit">/ day</span>
+        </div>
+        <p class="field-hint">Total number of visitors/users/clicks per day at your exposure point.</p>
+      </div>
+
+      <div class="field">
+        <label for="allocation">Traffic allocation</label>
+        <div class="field-input-wrap">
+          <input type="number" id="allocation" min="1" max="100" step="1" value="100" placeholder="100">
+          <span class="field-unit">%</span>
+        </div>
+        <p class="field-hint">Proportion of total traffic in the test. Typically 100% if you're not excluding anyone.</p>
+      </div>
+
+      <div class="field">
+        <label for="ratio">Allocation ratio (T/C)</label>
+        <div class="field-input-wrap">
+          <input type="number" id="ratio" min="0.1" max="10" step="0.1" value="1" placeholder="1.0">
+          <span class="field-unit">ratio</span>
+        </div>
+        <p class="field-hint">Ratio of Treatment to Control size. 1 = 50/50 split. E.g. for 70% Control / 30% Treatment, enter 0.43 (30÷70).</p>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Statistics</div>
+
+      <div class="field">
+        <label for="power">Statistical power (1−β)</label>
+        <div class="field-input-wrap">
+          <input type="number" id="power" min="50" max="99" step="1" value="80" placeholder="80">
+          <span class="field-unit">%</span>
+        </div>
+        <p class="field-hint">Probability of detecting the effect if it exists. Typically 80%.</p>
+      </div>
+
+      <div class="field">
+        <label for="alpha">Significance level (α)</label>
+        <div class="field-input-wrap">
+          <input type="number" id="alpha" min="0.01" max="0.20" step="0.01" value="0.05" placeholder="0.05">
+          <span class="field-unit">α</span>
+        </div>
+        <p class="field-hint">Probability of a Type I error (false positive). Typically 0.05.</p>
+      </div>
+    </div>
+
+    <button class="run-btn" id="run-btn">Calculate →</button>
+    <div class="error-msg" id="error-msg"></div>
+
+  </aside>
+
+  
+  <main class="main">
+
+    <div class="empty-state" id="empty-state">
+      <div class="description-block">
+        <p class="desc-intro">Calculate how long your A/B test needs to run to reach a target <strong>statistical power</strong> at a given <strong>significance level</strong>, based on:</p>
+        <ul class="desc-list">
+          <li><strong>Baseline conversion rate</strong> and <strong>expected relative % change</strong></li>
+          <li><strong>Traffic</strong>: daily traffic, traffic allocation, and allocation ratio</li>
+        </ul>
+        <p class="desc-intro">Configure your parameters and press <strong>Calculate</strong> to get a recommended number of days and power analysis charts.</p>
+
+        <div class="desc-divider"></div>
+
+        <h2 class="desc-heading">What is Power Analysis?</h2>
+        <p class="desc-intro">Power analysis helps you determine:</p>
+        <ul class="desc-list">
+          <li><strong>Sample size</strong>: How many participants you need to detect a meaningful effect</li>
+          <li><strong>Statistical power</strong>: The probability of detecting an effect if it exists (typically 0.8 or 80%)</li>
+          <li><strong>Effect size</strong>: The minimum difference you can detect with your sample size</li>
+          <li><strong>Significance level (α)</strong>: The probability of a Type I error (false positive), typically 0.05</li>
+          <li><strong>Test duration</strong>: How many days your test needs to run based on daily traffic and number of buckets</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="results" style="display:none">
+
+      <div class="result-banner" id="result-banner">
+        <div class="result-headline">
+          Run the test for at least <strong id="days-headline">—</strong> days
+        </div>
+        <div class="result-sub" id="result-sub"></div>
+      </div>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-cell">
+          <div class="stat-label">Days needed</div>
+          <div class="stat-value accent" id="s-days">—</div>
+          <div class="stat-unit">calendar days</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Control (n₁)</div>
+          <div class="stat-value" id="s-n1">—</div>
+          <div class="stat-unit">samples required</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Treatment (n₂)</div>
+          <div class="stat-value" id="s-n2">—</div>
+          <div class="stat-unit">samples required</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Total sample</div>
+          <div class="stat-value accent-2" id="s-total">—</div>
+          <div class="stat-unit">participants</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Effect size</div>
+          <div class="stat-value" id="s-effect">—</div>
+          <div class="stat-unit">Cohen's h</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Expected rate</div>
+          <div class="stat-value" id="s-p2">—</div>
+          <div class="stat-unit">treatment conversion</div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card" id="chart-card-1">
+          <div class="chart-header">
+            <span class="chart-title">Days needed vs. relative lift</span>
+            <span class="chart-tag">sensitivity</span>
+          </div>
+          <div class="chart-body">
+            <div id="chart-days" style="height:280px"></div>
+          </div>
+        </div>
+        <div class="chart-card" id="chart-card-2">
+          <div class="chart-header">
+            <span class="chart-title">Power vs. sample size</span>
+            <span class="chart-tag">heatmap</span>
+          </div>
+          <div class="chart-body">
+            <div id="chart-heatmap" style="height:280px"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  
+  const API_URL = 'https://api.datahook.co.uk'; 
+  
+  
+  
+
+  
+  document.getElementById('run-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('run-btn');
+    const errEl = document.getElementById('error-msg');
+    btn.textContent = 'Calculating…';
+    btn.classList.add('loading');
+    errEl.classList.remove('visible');
+
+    const payload = {
+      baseline_conversion_rate:     parseFloat(document.getElementById('baseline').value),
+      expected_relative_pct_change: parseFloat(document.getElementById('lift').value),
+      daily_traffic:                parseInt(document.getElementById('traffic').value),
+      traffic_allocation:           parseFloat(document.getElementById('allocation').value) / 100,
+      allocation_ratio:             parseFloat(document.getElementById('ratio').value),
+      statistical_power:            parseFloat(document.getElementById('power').value) / 100,
+      significance_level:           parseFloat(document.getElementById('alpha').value),
+    };
+
+    try {
+      const res = await fetch(`${API_URL}/calculate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error(`API error ${res.status}`);
+      const data = await res.json();
+      renderResults(data, payload);
+
+    } catch (err) {
+      errEl.textContent = `Could not reach the API. Is it running? (${err.message})`;
+      errEl.classList.add('visible');
+    } finally {
+      btn.textContent = 'Calculate →';
+      btn.classList.remove('loading');
+    }
+  });
+
+  function renderResults(data, payload) {
+    document.getElementById('empty-state').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+
+    
+    document.getElementById('days-headline').textContent = data.days_rounded;
+    document.getElementById('result-sub').textContent =
+      `To achieve ${Math.round(payload.statistical_power * 100)}% power at α=${payload.significance_level} ` +
+      `detecting a ${payload.expected_relative_pct_change}% relative lift ` +
+      `from ${(payload.baseline_conversion_rate).toFixed(2)}% baseline.`;
+    document.getElementById('result-banner').classList.add('visible');
+
+    
+    document.getElementById('s-days').textContent   = data.days_rounded;
+    document.getElementById('s-n1').textContent     = data.n1.toLocaleString();
+    document.getElementById('s-n2').textContent     = data.n2.toLocaleString();
+    document.getElementById('s-total').textContent  = data.total_n.toLocaleString();
+    document.getElementById('s-effect').textContent = Math.abs(data.effect_size).toFixed(4);
+    document.getElementById('s-p2').textContent     = (data.p2 * 100).toFixed(2) + '%';
+
+    
+    document.querySelectorAll('.stat-cell').forEach(el => el.classList.add('visible'));
+    document.getElementById('chart-card-1').classList.add('visible');
+    document.getElementById('chart-card-2').classList.add('visible');
+
+    renderCharts(data, payload);
+  }
+
+  function renderCharts(data, payload) {
+    const plotConfig = { displayModeBar: false, responsive: true };
+    const baseLayout = {
+      margin: { t: 20, r: 20, b: 50, l: 55 },
+      paper_bgcolor: 'white',
+      plot_bgcolor: 'white',
+      font: { family: 'DM Mono, monospace', size: 10, color: '#5a5a52' },
+      xaxis: {
+        showgrid: false,
+        zeroline: false,
+        linecolor: '#e4e3da',
+      },
+      yaxis: {
+        showgrid: false,
+        zeroline: false,
+        linecolor: '#e4e3da',
+      },
+    };
+
+    
+    const lifts = Array.from({ length: 40 }, (_, i) => 2 + i); 
+    
+    const p1 = payload.baseline_conversion_rate / 100;
+
+    
+    let daysArr = lifts.map(rel => {
+      const p2 = p1 * (1 + rel / 100);
+      
+      const h = 2 * Math.asin(Math.sqrt(p2)) - 2 * Math.asin(Math.sqrt(p1));
+      const za = 1.96, zb = 0.8416; 
+      const n1 = Math.ceil(Math.pow((za + zb) / Math.abs(h), 2));
+      
+      const testTraffic = payload.daily_traffic * payload.traffic_allocation;
+      const daily = testTraffic / (1 + payload.allocation_ratio);
+      return Math.ceil(n1 / daily);
+    });
+
+    
+    const scenarioRel = payload.expected_relative_pct_change;
+    const scenarioDays = data.days_rounded;
+    const scenarioIdx = lifts.reduce((bestIdx, val, idx) => {
+      return Math.abs(val - scenarioRel) < Math.abs(lifts[bestIdx] - scenarioRel) ? idx : bestIdx;
+    }, 0);
+    const daysAtScenario = daysArr[scenarioIdx];
+    if (daysAtScenario && scenarioDays) {
+      const scale = scenarioDays / daysAtScenario;
+      daysArr = daysArr.map(d => Math.round(d * scale));
+    }
+
+    Plotly.newPlot('chart-days', [{
+      x: daysArr,
+      y: lifts,
+      type: 'scatter',
+      mode: 'lines+markers',
+      name: 'Days needed',
+      line: { color: '#c84b2f', width: 2 },
+      marker: { size: 4, color: '#c84b2f' },
+      hovertemplate: 'Days needed: %{x:.0f}<br>Relative % change: %{y:.1f}%<extra></extra>',
+    }], {
+      ...baseLayout,
+      title: {
+        text:
+          `Test duration vs effect size ` +
+          `(power = ${(payload.statistical_power * 100).toFixed(0)}%, ` +
+          `α = ${payload.significance_level}, ` +
+          `${payload.daily_traffic.toLocaleString()} daily traffic)`,
+        x: 0,
+        xanchor: 'left',
+        y: 0.98,
+        font: { family: 'DM Mono, monospace', size: 11, color: '#5a5a52' },
+      },
+      xaxis: {
+        ...baseLayout.xaxis,
+        title: { text: 'Days needed to run test', standoff: 10, font: { size: 10, color: '#5a5a52' } },
+        rangemode: 'tozero',
+      },
+      yaxis: {
+        ...baseLayout.yaxis,
+        title: { text: 'Expected relative % change', standoff: 10, font: { size: 10, color: '#5a5a52' } },
+      },
+      hovermode: 'closest',
+      showlegend: false,
+      shapes: [
+        
+        {
+          type: 'line',
+          x0: data.days_rounded,
+          x1: data.days_rounded,
+          y0: Math.min(...lifts),
+          y1: Math.max(...lifts),
+          line: { color: '#c84b2f', width: 1.5, dash: 'dash' },
+        },
+        
+        {
+          type: 'line',
+          x0: Math.min(...daysArr),
+          x1: Math.max(...daysArr),
+          y0: payload.expected_relative_pct_change,
+          y1: payload.expected_relative_pct_change,
+          line: { color: '#c84b2f', width: 1, dash: 'dot' },
+        },
+      ],
+      annotations: [{
+        x: data.days_rounded,
+        y: payload.expected_relative_pct_change,
+        xanchor: 'left',
+        yanchor: 'bottom',
+        showarrow: false,
+        text:
+          `Your scenario: ${data.days_rounded} days, ` +
+          `${payload.expected_relative_pct_change}%`,
+        font: { size: 9, color: '#c84b2f' },
+        bgcolor: 'rgba(255,255,255,0.8)',
+        bordercolor: '#c84b2f',
+        borderwidth: 0.5,
+        align: 'left',
+      }],
+    }, plotConfig);
+
+    
+    
+    const relGrid = Array.from({ length: 50 }, (_, i) => i + 1);
+    
+    const nGrid   = Array.from({ length: 20 }, (_, i) => 500 + i * 500);
+    const zGrid   = relGrid.map(rel => {
+      const p2g = p1 * (1 + rel / 100);
+      const h   = Math.abs(2 * Math.asin(Math.sqrt(p2g)) - 2 * Math.asin(Math.sqrt(p1)));
+      return nGrid.map(n => {
+        
+        const lambda = h * Math.sqrt(n);
+        const power  = 1 - normalCDF(1.96 - lambda) + normalCDF(-1.96 - lambda);
+        return Math.min(Math.max(power, 0), 1);
+      });
+    });
+
+    Plotly.newPlot('chart-heatmap', [{
+      x: nGrid, y: relGrid, z: zGrid,
+      type: 'heatmap',
+      colorscale: [
+        [0,    '#fdf0ee'],
+        [0.5,  '#f5c9c0'],
+        [0.8,  '#2a6e4f'],
+        [1,    '#1a3d2b'],
+      ],
+      zmin: 0.3, zmax: 1,
+      colorbar: { thickness: 10, len: 0.8, title: { text: 'Power', side: 'right' } },
+      hovertemplate: 'n=%{x:,}<br>lift=%{y:.1f}%<br>power=%{z:.2f}<extra></extra>',
+    }, {
+      x: [data.n1], y: [payload.expected_relative_pct_change],
+      type: 'scatter', mode: 'markers',
+      marker: { color: '#1a1a18', size: 5, symbol: 'cross', line: { width: 1, color: 'white' } },
+      hoverinfo: 'skip',
+      hovertemplate: 'Your scenario<extra></extra>',
+    }], {
+      ...baseLayout,
+      xaxis: { ...baseLayout.xaxis, title: { text: 'Sample size per group', standoff: 10 } },
+      yaxis: { ...baseLayout.yaxis, title: { text: 'Relative lift (%)', standoff: 10 } },
+      showlegend: false,
+    }, plotConfig);
+
+  }
+
+  
+  function normalCDF(x) {
+    const t = 1 / (1 + 0.2315419 * Math.abs(x));
+    const d = 0.3989423 * Math.exp(-x * x / 2);
+    const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.7814779 + t * (-1.8212560 + t * 1.3302744))));
+    return x > 0 ? 1 - p : p;
+  }
+</script>
+
+</body>
+</html>
