@@ -6,8 +6,15 @@
     <description>Recent content on Datahook: Helena</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hhook.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Jupyter Notebook to AWS: Deploying an A/B Test Duration Calculator</title>
+      <link>https://hhook.github.io/blogs/08_ab-test-calculator/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://hhook.github.io/blogs/08_ab-test-calculator/</guid>
+      <description>&lt;p&gt;I built an A/B test duration calculator in a Jupyter notebook. It worked great locally: plug in your baseline conversion rate, expected lift, and daily traffic, and it would tell you exactly how many days to run your test. The problem was it lived entirely on my machine, which meant it was useful to exactly one person: me.&lt;/p&gt;&#xA;&lt;p&gt;So I decided to turn it into a real, deployed web tool. What followed was a proper end-to-end ML deployment project: FastAPI, Docker, AWS ECS Fargate, a load balancer, HTTPS, and an automated CI/CD pipeline. This post walks through what I built, the decisions I made, and the things that went wrong along the way.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Building an AI version of myself</title>
       <link>https://hhook.github.io/blogs/07_helena_chatbot/</link>
